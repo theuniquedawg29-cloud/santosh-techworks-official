@@ -183,10 +183,12 @@ function sendChatMessage() {
 
 function sendSuggestedMessage(topic) {
     let message = "";
-    if (topic === 'About Quant-Elite') message = "Tell me about Quant-Elite";
-    if (topic === 'How to Download') message = "How can I download the app?";
+    if (topic === 'About Quant-Elite') message = "Tell me about Quant-Elite Features";
+    if (topic === 'How to Download') message = "How can I install the Beta?";
+    if (topic === 'Quiz Clash') message = "What is the Quiz Clash Arena?";
+    if (topic === 'AI Mentor') message = "Tell me about Ganitacharya AI";
+    if (topic === 'Certificates') message = "How do I get Mastery Certificates?";
     if (topic === 'Contact Support') message = "I need help with something";
-    if (topic === 'AI Mentor') message = "Who are you, Siddhant?";
     if (topic === 'Services') message = "What services do you offer?";
     if (topic === 'Santosh') message = "Who created this?";
 
@@ -211,25 +213,25 @@ function getBotResponse(input) {
 
         about: isHindi
             ? `<strong>Quant-Elite</strong> गणित सीखने का एक क्रांतिकारी प्लेटफॉर्म है:<br><br>
-               • <strong>34,000+ प्रश्न:</strong> GATE, CAT और JEE के स्तर के अभ्यास सवाल।<br>
-               • <strong>AI मेंटर:</strong> मैं (सिद्धांत) आपको हर सवाल का विस्तृत समाधान दूंगा।<br>
-               • <strong>गेमिफिकेशन:</strong> सिक्के जीतें, नए अध्याय अनलॉक करें और अपनी रैंक सुधारें।<br><br>
-               क्या आप इसे आज़माना चाहेंगे? आप इसे यहाँ से डाउनलोड कर सकते हैं: <a href="https://indusapp.store/2xanb2rz" target="_blank" style="color: #6366f1; font-weight: bold;">Indus Appstore</a>`
+               • <strong>Ganitacharya AI Mentor:</strong> यह आपको आवाज़, टेक्स्ट या फोटो के ज़रिए सवालों के जवाब देगा।<br>
+               • <strong>Quiz Clash:</strong> दोस्तों के साथ रियल-टाइम क्विज़ बैटल खेलें।<br>
+               • <strong>Analytics:</strong> रडार चार्ट के ज़रिए अपनी प्रगति देखें।<br>
+               • <strong>Certificates:</strong> अपनी परफॉरमेंस के आधार पर गोल्ड, सिल्वर या ब्रोंज सर्टिफिकेट जीतें।<br><br>
+               क्या आप इसे आज़माना चाहेंगे? <a href="install-guide.html" style="color: #6366f1; font-weight: bold;">यहाँ क्लिक करें</a>`
             : `<strong>Quant-Elite</strong> is a revolutionary math learning platform designed for excellence:<br><br>
-               • <strong>34,000+ Questions:</strong> Extensive practice material for GATE, CAT, and JEE standards.<br>
-               • <strong>AI Mentorship:</strong> I (Siddhant) provide voice-enabled explanations for every problem.<br>
-               • <strong>Gamification:</strong> Earn coins, unlock chapters, and climb the leaderboard.<br><br>
-               Ready to start? Download it here: <a href="https://indusapp.store/2xanb2rz" target="_blank" style="color: #6366f1; font-weight: bold;">Get it on Indus Appstore</a>`,
+               • <strong>Ganitacharya AI Mentor:</strong> Personalized guidance using voice, text, or image analysis.<br>
+               • <strong>Quiz Clash (Multiplayer):</strong> Live 2-4 player battles with private lobbies and smart bots.<br>
+               • <strong>Advanced Analytics:</strong> Map your skills via radar charts and earn dynamic Mastery Certificates.<br>
+               • <strong>The Learning Tree:</strong> Gamified path with LaTeX tutorials and diagrams.<br><br>
+               Ready to start? <a href="install-guide.html" style="color: #6366f1; font-weight: bold;">Install the Beta Now</a>`,
 
         download: isHindi
-            ? `निश्चित रूप से! आप <strong>Quant-Elite</strong> को इन लिंक्स से डाउनलोड कर सकते हैं:<br><br>
-               🚀 <strong>Indus Appstore:</strong> <a href="https://indusapp.store/2xanb2rz" target="_blank" style="color: #6366f1;">यहाँ क्लिक करें</a><br>
-               📦 <strong>Direct APK:</strong> <a href="https://uptodown.com/" target="_blank" style="color: #6366f1;">Uptodown से लें</a><br><br>
-               जल्द ही हम Google Play Store पर भी लाइव होंगे!`
-            : `Absolutely! You can download <strong>Quant-Elite</strong> using these links:<br><br>
-               🚀 <strong>Indus Appstore:</strong> <a href="https://indusapp.store/2xanb2rz" target="_blank" style="color: #6366f1; font-weight: bold;">Download Now</a><br>
-               📦 <strong>Direct APK:</strong> <a href="https://uptodown.com/" target="_blank" style="color: #6366f1; font-weight: bold;">Get it on Uptodown</a><br><br>
-               We'll be on the Google Play Store very soon!`,
+            ? `निश्चित रूप से! आप <strong>Quant-Elite</strong> को इंस्टॉल करने के लिए हमारे **Installation Guide** का पालन करें:<br><br>
+               🚀 <strong>Guide Link:</strong> <a href="install-guide.html" style="color: #6366f1;">यहाँ क्लिक करें</a><br><br>
+               इसमें Google Group जॉइन करने और टेस्टर बनने के सारे स्टेप्स दिए गए हैं।`
+            : `Absolutely! Please follow our <strong>Installation Guide</strong> to get the Quant-Elite Beta:<br><br>
+               🚀 <strong>Guide Link:</strong> <a href="install-guide.html" style="color: #6366f1; font-weight: bold;">Open Installation Guide</a><br><br>
+               This covers joining the Google Group and becoming an official beta tester.`,
 
         creator: isHindi
             ? `<strong>संतोष चौबे</strong> Santosh TechWorks के संस्थापक और मुख्य डेवलपर हैं। 👨‍💻<br><br>
@@ -280,6 +282,15 @@ function getBotResponse(input) {
 
     if (val.includes('hello') || val.includes('hi') || val.includes('नमस्ते')) return personalResponses.greet;
     if (val.includes('who are you') || val.includes('तुम कौन') || val.includes('siddhant') || val.includes('सिद्धांत')) return personalResponses.whoAreYou;
+    if (val.includes('clash') || val.includes('multiplayer') || val.includes('arena') || val.includes('battle')) return isHindi
+        ? "<strong>Quiz Clash</strong> हमारा रियल-टाइम मल्टीप्लेयर एरिना है जहाँ आप दोस्तों या अनजान खिलाड़ियों के साथ क्विज़ खेल सकते हैं। इसमें स्मार्ट बॉट्स और प्राइवेट लॉबी की सुविधा भी है!"
+        : "<strong>Quiz Clash</strong> is our real-time multiplayer arena where you can engage in 2-4 player quiz battles. It features matchmaking, private lobbies, and smart bots!";
+    if (val.includes('ganitacharya') || val.includes('mentor') || val.includes('ai')) return isHindi
+        ? "<strong>Ganitacharya AI Mentor</strong> आपका पर्सनल मैथ गाइड है। आप आवाज़, टेक्स्ट या फोटो भेजकर सवाल पूछ सकते हैं। यह आपको स्टेप-बाय-स्टेप गाइडेंस देगा।"
+        : "<strong>Ganitacharya AI Mentor</strong> is your personalized math guide. You can ask doubts via voice, text, or images, and it provides conversational, step-by-step solutions.";
+    if (val.includes('certificate') || val.includes('mastery') || val.includes('grade')) return isHindi
+        ? "आप अपनी परफॉरमेंस के आधार पर गोल्ड, सिल्वर या ब्रोंज <strong>Mastery Certificates</strong> डाउनलोड और शेयर कर सकते हैं।"
+        : "Based on your performance, you can earn and download dynamic <strong>Mastery Certificates</strong> (Gold, Silver, Bronze) directly from the app!";
     if (val.includes('santosh') || val.includes('creator') || val.includes('founder') || val.includes('संतोष') || val.includes('who made') || val.includes('कौन बनाया')) return personalResponses.creator;
     if (val.includes('download') || val.includes('डाउनलोड') || val.includes('link') || val.includes('app')) return personalResponses.download;
     if (val.includes('email') || val.includes('connect') || val.includes('contact') || val.includes('ईमेल') || val.includes('संपर्क') || val.includes('support') || val.includes('help')) return personalResponses.support;
