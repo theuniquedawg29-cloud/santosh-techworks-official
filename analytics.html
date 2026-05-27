@@ -6,12 +6,18 @@
     <title>Student Analytics | Quant-Elite</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .analytics-content { padding: 8rem 0 4rem; }
+        .analytics-content { padding: 8rem 0 4rem; position: relative; min-height: 80vh; }
         .analytics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -21,6 +27,7 @@
             border-radius: 24px;
             border: 1px solid var(--border);
             min-height: 400px;
+            box-shadow: var(--shadow);
         }
         .user-header {
             display: flex;
@@ -31,6 +38,7 @@
             background: var(--bg-card);
             border-radius: 24px;
             border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
         .avatar {
             width: 80px;
@@ -41,11 +49,50 @@
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
+            color: #1e1b4b;
+            font-weight: 800;
         }
         .user-info h2 { text-align: left; margin-bottom: 0.25rem; }
-        .user-stats { display: flex; gap: 2rem; margin-top: 0.5rem; }
-        .user-stats span { font-weight: 700; color: var(--text-muted); }
+        .user-stats { display: flex; gap: 2rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .user-stats span { font-weight: 700; color: var(--text-muted); font-size: 0.9rem; }
         .user-stats b { color: var(--primary); }
+
+        /* Auth Overlay */
+        #auth-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-body); z-index: 2000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 2rem; text-align: center;
+        }
+        .auth-card {
+            background: var(--bg-card); padding: 3rem; border-radius: 32px;
+            border: 1px solid var(--border); max-width: 450px; width: 100%;
+            box-shadow: var(--shadow);
+        }
+        .auth-card h1 { margin-bottom: 1rem; color: var(--primary); }
+        .auth-card p { color: var(--text-muted); margin-bottom: 2rem; }
+
+        .loading-spinner {
+            width: 50px; height: 50px; border: 5px solid var(--border);
+            border-top: 5px solid var(--primary); border-radius: 50%;
+            animation: spin 1s linear infinite; margin-bottom: 1rem;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .hidden { display: none !important; }
+        .logout-btn {
+            background: none; border: 1px solid var(--border);
+            color: var(--text-muted); padding: 0.5rem 1rem; border-radius: 10px;
+            cursor: pointer; font-weight: 700; margin-left: auto;
+        }
+        .logout-btn:hover { color: #ef4444; border-color: #ef4444; }
+
+        @media (max-width: 600px) {
+            .user-stats { gap: 1rem; }
+            .user-header { flex-direction: column; text-align: center; }
+            .user-info h2 { text-align: center; }
+            .logout-btn { margin: 1rem auto 0; }
+        }
     </style>
 </head>
 <body>
@@ -59,35 +106,56 @@
         </div>
     </nav>
 
-    <main class="analytics-content container">
+    <!-- Auth Overlay -->
+    <div id="auth-overlay">
+        <div id="loading-view">
+            <div class="loading-spinner"></div>
+            <p>Syncing with Google Cloud...</p>
+        </div>
+        <div id="login-view" class="auth-card hidden">
+            <h1>Welcome Back</h1>
+            <p>Sign in with your Quant-Elite account to view your personalized learning insights and mastery progress.</p>
+            <button onclick="loginWithGoogle()" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20">
+                Continue with Google
+            </button>
+            <div style="margin: 1.5rem 0; color: var(--text-muted); font-size: 0.8rem;">OR</div>
+            <button onclick="loginAnonymously()" class="btn btn-secondary" style="width: 100%;">
+                Try Guest Mode
+            </button>
+        </div>
+    </div>
+
+    <main class="analytics-content container hidden" id="main-content">
         <div class="user-header">
-            <div class="avatar">👤</div>
+            <div class="avatar" id="user-initial">?</div>
             <div class="user-info">
-                <h2>Guest Student</h2>
+                <h2 id="user-display-name">Student Name</h2>
                 <div class="user-stats">
-                    <span>Rank: <b>Gold</b></span>
-                    <span>Coins: <b>1,240</b></span>
-                    <span>Accuracy: <b>78%</b></span>
+                    <span id="stat-rank">Rank: <b>Syncing...</b></span>
+                    <span id="stat-coins">Coins: <b>0</b></span>
+                    <span id="stat-accuracy">Accuracy: <b>0%</b></span>
                 </div>
             </div>
+            <button class="logout-btn" onclick="logout()">Sign Out</button>
         </div>
 
-        <h2>Performance Insights</h2>
+        <h2>Your Performance Insights</h2>
 
         <div class="analytics-grid">
             <div class="chart-container">
-                <h3>Accuracy by Topic</h3>
+                <h3>Accuracy by Topic (%)</h3>
                 <canvas id="topicChart"></canvas>
             </div>
             <div class="chart-container">
-                <h3>Quiz Activity (Last 7 Days)</h3>
+                <h3>Quiz Activity (Last 7 Sessions)</h3>
                 <canvas id="activityChart"></canvas>
             </div>
         </div>
 
         <div class="analytics-grid">
             <div class="chart-container" style="grid-column: 1 / -1;">
-                <h3>Global Skill Radar</h3>
+                <h3>Global Mastery Radar</h3>
                 <div style="max-width: 500px; margin: 0 auto;">
                     <canvas id="radarChart"></canvas>
                 </div>
@@ -96,54 +164,211 @@
     </main>
 
     <script>
-        const ctx1 = document.getElementById('topicChart').getContext('2d');
-        const ctx2 = document.getElementById('activityChart').getContext('2d');
-        const ctx3 = document.getElementById('radarChart').getContext('2d');
+        // Firebase Configuration (from your google-services.json)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCUuodgZJOEqrT6eJrUWtFqxZWdojOQmU8",
+            authDomain: "quant-elite-ddfb4.firebaseapp.com",
+            projectId: "quant-elite-ddfb4",
+            storageBucket: "quant-elite-ddfb4.firebasestorage.app",
+            messagingSenderId: "619510555417",
+            appId: "1:619510555417:web:c07edf4b6b3c9677bce49" // Placeholder web app id
+        };
 
-        new Chart(ctx1, {
-            type: 'bar',
-            data: {
-                labels: ['Algebra', 'Geometry', 'Statistics', 'Trig', 'Arithmetic'],
-                datasets: [{
-                    label: 'Accuracy %',
-                    data: [85, 72, 90, 65, 80],
-                    backgroundColor: '#f59e0b',
-                    borderRadius: 8
-                }]
-            },
-            options: { responsive: true, plugins: { legend: { display: false } } }
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let topicChart, activityChart, radarChart;
+
+        // Auth State Listener
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                console.log("User logged in:", user.uid);
+                document.getElementById('auth-overlay').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+                loadUserData(user);
+            } else {
+                console.log("User logged out");
+                document.getElementById('auth-overlay').classList.remove('hidden');
+                document.getElementById('login-view').classList.remove('hidden');
+                document.getElementById('loading-view').classList.add('hidden');
+                document.getElementById('main-content').classList.add('hidden');
+            }
         });
 
-        new Chart(ctx2, {
-            type: 'line',
-            data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                datasets: [{
-                    label: 'Quizzes Taken',
-                    data: [4, 7, 3, 8, 5, 12, 10],
-                    borderColor: '#6366f1',
-                    tension: 0.4,
-                    fill: true,
-                    backgroundColor: 'rgba(99, 102, 241, 0.1)'
-                }]
-            },
-            options: { responsive: true }
+        async function loadUserData(user) {
+            // Update basic info
+            document.getElementById('user-display-name').textContent = user.displayName || "Explorer";
+            document.getElementById('user-initial').textContent = (user.displayName || "E").charAt(0).toUpperCase();
+
+            // 1. Fetch User Stats
+            db.collection('users').doc(user.uid).onSnapshot(doc => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    document.getElementById('stat-coins').innerHTML = `Coins: <b>${data.coins || 0}</b>`;
+
+                    const acc = data.stats?.accuracy ? (data.stats.accuracy * 100).toFixed(1) : "0";
+                    document.getElementById('stat-accuracy').innerHTML = `Accuracy: <b>${acc}%</b>`;
+
+                    // Simple Rank Logic
+                    let rank = "Bronze";
+                    if (data.coins > 1000) rank = "Silver";
+                    if (data.coins > 5000) rank = "Gold";
+                    if (data.coins > 15000) rank = "Platinum";
+                    document.getElementById('stat-rank').innerHTML = `Rank: <b>${rank}</b>`;
+                }
+            });
+
+            // 2. Fetch Quiz History for Charts
+            db.collection('users').doc(user.uid).collection('history')
+              .orderBy('date', 'desc').limit(20).onSnapshot(snapshot => {
+                const history = snapshot.docs.map(doc => doc.data());
+                updateCharts(history);
+            });
+        }
+
+        function updateCharts(history) {
+            if (history.length === 0) return;
+
+            // --- Topic Accuracy Logic ---
+            const topics = {};
+            history.forEach(res => {
+                if (!topics[res.topic]) topics[res.topic] = { total: 0, score: 0 };
+                topics[res.topic].total += res.totalQuestions || 1;
+                topics[res.topic].score += res.score || 0;
+            });
+
+            const topicLabels = Object.keys(topics);
+            const topicData = topicLabels.map(t => (topics[t].score / topics[t].total) * 100);
+
+            // --- Activity Logic (Last 7 Sessions) ---
+            const last7 = history.slice(0, 7).reverse();
+            const activityLabels = last7.map(res => {
+                const d = new Date(res.date);
+                return `${d.getMonth()+1}/${d.getDate()}`;
+            });
+            const activityData = last7.map(res => res.score);
+
+            // --- Render/Update Charts ---
+            renderTopicChart(topicLabels, topicData);
+            renderActivityChart(activityLabels, activityData);
+            renderRadarChart(topicData);
+        }
+
+        function renderTopicChart(labels, data) {
+            const ctx = document.getElementById('topicChart').getContext('2d');
+            if (topicChart) topicChart.destroy();
+            topicChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Accuracy %',
+                        data: data,
+                        backgroundColor: '#f59e0b',
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, max: 100 } }
+                }
+            });
+        }
+
+        function renderActivityChart(labels, data) {
+            const ctx = document.getElementById('activityChart').getContext('2d');
+            if (activityChart) activityChart.destroy();
+            activityChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Score',
+                        data: data,
+                        borderColor: '#6366f1',
+                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+        }
+
+        function renderRadarChart(topicData) {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            if (radarChart) radarChart.destroy();
+
+            // Map accuracy to radar traits
+            const avgAcc = topicData.reduce((a, b) => a + b, 0) / (topicData.length || 1);
+
+            radarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Logic', 'Speed', 'Accuracy', 'Consistency', 'Depth'],
+                    datasets: [{
+                        label: 'Mastery Level',
+                        data: [
+                            80 + (avgAcc/10), // Logic
+                            70 + (topicData.length * 2), // Speed (simulated)
+                            avgAcc, // Accuracy
+                            75 + (topicData.length), // Consistency
+                            60 + (avgAcc/5) // Depth
+                        ],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: { r: { suggestMin: 0, suggestMax: 100 } }
+                }
+            });
+        }
+
+        // Auth Actions
+        function loginWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).catch(error => {
+                alert("Login failed: " + error.message);
+            });
+        }
+
+        function loginAnonymously() {
+            auth.signInAnonymously().catch(error => {
+                alert("Guest login failed: " + error.message);
+            });
+        }
+
+        function logout() {
+            auth.signOut();
+        }
+
+        // Theme Toggle (Re-sync with style.css logic)
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeIcon.textContent = newTheme === 'light' ? '🌙' : '☀️';
         });
 
-        new Chart(ctx3, {
-            type: 'radar',
-            data: {
-                labels: ['Speed', 'Accuracy', 'Consistency', 'Complexity', 'Diversity'],
-                datasets: [{
-                    label: 'Current Skillset',
-                    data: [90, 78, 85, 60, 95],
-                    borderColor: '#10b981',
-                    backgroundColor: 'rgba(16, 185, 129, 0.2)'
-                }]
-            },
-            options: { responsive: true }
-        });
+        // Initialize theme on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        themeIcon.textContent = savedTheme === 'light' ? '🌙' : '☀️';
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
