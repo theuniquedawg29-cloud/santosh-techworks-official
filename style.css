@@ -126,6 +126,78 @@ h2 {
     color: var(--primary);
 }
 
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-main);
+    transition: 0.3s;
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-body);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    text-align: center;
+}
+
+.mobile-nav-links li {
+    margin: 1.5rem 0;
+}
+
+.mobile-nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    font-weight: 800;
+    transition: color 0.3s;
+}
+
+.mobile-nav-links a:hover {
+    color: var(--primary);
+}
+
 /* Hero Section */
 .hero {
     padding: 8rem 0 4rem;
@@ -413,6 +485,8 @@ h2 {
     .app-showcase, .about-content { grid-template-columns: 1fr; text-align: center; }
     .hero-content h1 { font-size: 2.5rem; }
     .download-buttons { justify-content: center; }
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: flex; }
 }
 
 @media (max-width: 640px) {

@@ -21,6 +21,27 @@ function updateThemeIcon(theme) {
     themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
 }
 
+// Mobile Menu Logic
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileNavClose = document.getElementById('mobile-nav-close');
+const mobileNav = document.getElementById('mobile-nav');
+const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+function toggleMobileNav() {
+    mobileNav.classList.toggle('active');
+    document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+}
+
+if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileNav);
+if (mobileNavClose) mobileNavClose.addEventListener('click', toggleMobileNav);
+
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+
 // Smooth scroll navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
