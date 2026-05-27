@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula Library | Quant-Elite</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .library-content { padding: 8rem 0 4rem; }
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-size: 1rem;
+            margin-bottom: 3rem;
+        }
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .formula-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+        .formula-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .formula-card h3 { color: var(--primary); margin-bottom: 1rem; }
+        .math-block {
+            background: var(--bg-body);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 1.25rem;
+            border-left: 4px solid var(--primary);
+        }
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Quant-Elite Library</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><button id="theme-toggle" class="theme-toggle"><span id="theme-icon">🌙</span></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="library-content container">
+        <input type="text" class="search-bar" placeholder="Search formulas (e.g. Quadratic, Mean, Trig)..." id="librarySearch">
+
+        <div class="formula-grid" id="formulaGrid">
+            <!-- Quadratic -->
+            <div class="formula-card">
+                <span class="tag">Algebra</span>
+                <h3>Quadratic Formula</h3>
+                <p>Standard form for solving any quadratic equation \(ax^2 + bx + c = 0\).</p>
+                <div class="math-block">
+                    \[x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\]
+                </div>
+                <p><small>Where \(b^2 - 4ac\) is the Discriminant (D).</small></p>
+            </div>
+
+            <!-- Statistics -->
+            <div class="formula-card">
+                <span class="tag">Statistics</span>
+                <h3>Arithmetic Mean</h3>
+                <p>The average of a set of \(n\) numbers.</p>
+                <div class="math-block">
+                    \[\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}\]
+                </div>
+            </div>
+
+            <!-- Geometry -->
+            <div class="formula-card">
+                <span class="tag">Geometry</span>
+                <h3>Pythagoras Theorem</h3>
+                <p>Relation between the sides of a right-angled triangle.</p>
+                <div class="math-block">
+                    \[a^2 + b^2 = c^2\]
+                </div>
+                <p><small>Applicable only to triangles with one 90° angle.</small></p>
+            </div>
+
+            <!-- Trigonometry -->
+            <div class="formula-card">
+                <span class="tag">Trigonometry</span>
+                <h3>Trig Identity</h3>
+                <p>The fundamental Pythagorean trigonometric identity.</p>
+                <div class="math-block">
+                    \[\sin^2\theta + \cos^2\theta = 1\]
+                </div>
+            </div>
+
+            <!-- Area -->
+            <div class="formula-card">
+                <span class="tag">Mensuration</span>
+                <h3>Heron's Formula</h3>
+                <p>Area of triangle given three side lengths \(a, b, c\).</p>
+                <div class="math-block">
+                    \[A = \sqrt{s(s-a)(s-b)(s-c)}\]
+                </div>
+                <p><small>\(s\) is the semi-perimeter \((a+b+c)/2\).</small></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const searchInput = document.getElementById('librarySearch');
+        const cards = document.querySelectorAll('.formula-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

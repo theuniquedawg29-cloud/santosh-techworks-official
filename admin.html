@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Quant-Elite</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .admin-content { padding: 8rem 0 4rem; }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .stat-card h3 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .stat-card .value { font-size: 2rem; font-weight: 800; color: var(--primary); }
+
+        .admin-section {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        th { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+
+        .btn-sm { padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 8px; }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .status-active { background: rgba(16, 185, 129, 0.1); color: var(--secondary); }
+
+        .log-entry { font-family: monospace; font-size: 0.85rem; padding: 0.5rem 0; color: var(--text-muted); }
+        .log-time { color: var(--accent); margin-right: 1rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Quant-Elite Admin</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Main Site</a></li>
+                <li><button id="theme-toggle" class="theme-toggle"><span id="theme-icon">🌙</span></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="admin-content container">
+        <div class="section-header">
+            <h2>System Overview</h2>
+            <button class="btn btn-primary btn-sm">Refresh Data</button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <h3>Total Questions</h3>
+                <div class="value">34,208</div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Users</h3>
+                <div class="value">1,254</div>
+            </div>
+            <div class="stat-card">
+                <h3>AI Mentor Logs</h3>
+                <div class="value">8.4K</div>
+            </div>
+            <div class="stat-card">
+                <h3>System Health</h3>
+                <div class="value" style="color: var(--secondary);">99.9%</div>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <div class="section-header">
+                <h3>Question Management</h3>
+                <div class="cta-buttons">
+                    <button class="btn btn-secondary btn-sm">Export JSON</button>
+                    <button class="btn btn-primary btn-sm">+ Add New</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Question</th>
+                        <th>Correct Ans</th>
+                        <th>Difficulty</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Quadratic Equations</td>
+                        <td>Find roots of x²-5x+6=0</td>
+                        <td>2, 3</td>
+                        <td>Easy</td>
+                        <td><button class="btn-sm btn-secondary">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Statistics</td>
+                        <td>Mean of 10, 20, 30, x is 25. x?</td>
+                        <td>40</td>
+                        <td>Medium</td>
+                        <td><button class="btn-sm btn-secondary">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="admin-section">
+            <h3>AI Performance Logs (Ganitacharya)</h3>
+            <div style="max-height: 300px; overflow-y: auto; margin-top: 1rem;">
+                <div class="log-entry"><span class="log-time">[14:22:05]</span> AI solved Quadratic Inequality for user santosh_29</div>
+                <div class="log-entry"><span class="log-time">[14:21:40]</span> Image recognition processed: Triangle_Geometry.png</div>
+                <div class="log-entry"><span class="log-time">[14:20:12]</span> Mentor Siddhant replied in Hindi to user_882</div>
+                <div class="log-entry"><span class="log-time">[14:18:55]</span> System: 34K questions synced with main.dart</div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Santosh TechWorks Admin Internal</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

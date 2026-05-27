@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Analytics | Quant-Elite</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .analytics-content { padding: 8rem 0 4rem; }
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .chart-container {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            min-height: 400px;
+        }
+        .user-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+        .user-info h2 { text-align: left; margin-bottom: 0.25rem; }
+        .user-stats { display: flex; gap: 2rem; margin-top: 0.5rem; }
+        .user-stats span { font-weight: 700; color: var(--text-muted); }
+        .user-stats b { color: var(--primary); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Quant-Elite Analytics</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><button id="theme-toggle" class="theme-toggle"><span id="theme-icon">🌙</span></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="analytics-content container">
+        <div class="user-header">
+            <div class="avatar">👤</div>
+            <div class="user-info">
+                <h2>Guest Student</h2>
+                <div class="user-stats">
+                    <span>Rank: <b>Gold</b></span>
+                    <span>Coins: <b>1,240</b></span>
+                    <span>Accuracy: <b>78%</b></span>
+                </div>
+            </div>
+        </div>
+
+        <h2>Performance Insights</h2>
+
+        <div class="analytics-grid">
+            <div class="chart-container">
+                <h3>Accuracy by Topic</h3>
+                <canvas id="topicChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Quiz Activity (Last 7 Days)</h3>
+                <canvas id="activityChart"></canvas>
+            </div>
+        </div>
+
+        <div class="analytics-grid">
+            <div class="chart-container" style="grid-column: 1 / -1;">
+                <h3>Global Skill Radar</h3>
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const ctx1 = document.getElementById('topicChart').getContext('2d');
+        const ctx2 = document.getElementById('activityChart').getContext('2d');
+        const ctx3 = document.getElementById('radarChart').getContext('2d');
+
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Algebra', 'Geometry', 'Statistics', 'Trig', 'Arithmetic'],
+                datasets: [{
+                    label: 'Accuracy %',
+                    data: [85, 72, 90, 65, 80],
+                    backgroundColor: '#f59e0b',
+                    borderRadius: 8
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } } }
+        });
+
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Quizzes Taken',
+                    data: [4, 7, 3, 8, 5, 12, 10],
+                    borderColor: '#6366f1',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(99, 102, 241, 0.1)'
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        new Chart(ctx3, {
+            type: 'radar',
+            data: {
+                labels: ['Speed', 'Accuracy', 'Consistency', 'Complexity', 'Diversity'],
+                datasets: [{
+                    label: 'Current Skillset',
+                    data: [90, 78, 85, 60, 95],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.2)'
+                }]
+            },
+            options: { responsive: true }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
