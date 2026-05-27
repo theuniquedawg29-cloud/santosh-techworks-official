@@ -9,7 +9,7 @@
 ### 1. Create GitHub Repository
 1. Go to https://github.com and sign in
 2. Click the "+" icon → "New repository"
-3. Repository name: `quant-elite-website` (or your choice)
+3. Repository name: `santosh-techworks-official` (or your choice)
 4. Make it **Public** (required for free GitHub Pages)
 5. **DO NOT** initialize with README (we already have one)
 6. Click "Create repository"
@@ -19,7 +19,7 @@ Run these commands in your terminal:
 
 ```bash
 # Add GitHub repository as remote (replace YOUR_USERNAME with your GitHub username)
-git remote add origin https://github.com/YOUR_USERNAME/quant-elite-website.git
+git remote add origin https://github.com/YOUR_USERNAME/santosh-techworks-official.git
 
 # Push your code to GitHub
 git branch -M main
@@ -36,8 +36,8 @@ git push -u origin main
 
 ### 4. Access Your Website
 - Wait 2-3 minutes for deployment
-- Your site will be available at: `https://YOUR_USERNAME.github.io/quant-elite-website/`
-- Example: `https://santosh-techworks.github.io/quant-elite-website/`
+- Your site will be available at: `https://YOUR_USERNAME.github.io/santosh-techworks-official/`
+- Example: `https://santosh-techworks.github.io/santosh-techworks-official/`
 
 ## 🔄 Making Updates
 When you make changes to your website:

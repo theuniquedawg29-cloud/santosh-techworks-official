@@ -3,7 +3,7 @@ echo 🚀 Quant-Elite Website Deployment Script
 echo ========================================
 
 set username=theuniquedawg29-cloud
-set repo_name=quant-elite-website
+set repo_name=santosh-techworks-official
 
 echo.
 echo Setting up GitHub remote for %repo_name%...
