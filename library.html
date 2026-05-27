@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formula Library | Quant-Elite</title>
+    <title>Master Formula Library | Quant-Elite</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -62,11 +62,6 @@
             overflow-x: auto;
         }
 
-        .table-container { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); }
-        table { width: 100%; border-collapse: collapse; background: var(--bg-card); }
-        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
-        th { background: var(--bg-body); color: var(--primary); font-weight: 700; }
-
         @media (max-width: 768px) {
             .chapter-title { font-size: 1.5rem; }
             .search-container { top: 60px; }
@@ -74,408 +69,452 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">Quant-Elite Library</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><button id="theme-toggle" class="theme-toggle"><span id="theme-icon">🌙</span></button></li>
-            </ul>
+<nav class="navbar">
+    <div class="container">
+        <a href="index.html" class="logo">Quant-Elite Library</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><button id="theme-toggle" class="theme-toggle"><span id="theme-icon">🌙</span></button></li>
+        </ul>
+    </div>
+</nav>
+
+<main class="library-content container">
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search for any formula, topic, definition or chapter..." id="librarySearch">
+    </div>
+
+    <section class="chapter-section" id="arithmetic">
+        <h2 class="chapter-title">I. Arithmetic & Commercial Math</h2>
+
+        <div class="topic-group">
+            <h3 class="topic-title">Number Systems, Divisibility & Fractions</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Sum of First n Natural Numbers</h4>
+                    <div class="math-block">\[ \text{Sum} = \frac{n(n + 1)}{2} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Sum of First n Odd Numbers</h4>
+                    <div class="math-block">\[ \text{Sum} = n^2 \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Trailing Zeros (Legendre's Formula)</h4>
+                    <p>Highest power exponent of 5 contained inside factorial value \(n!\)</p>
+                    <div class="math-block">\[ E_5(n!) = \sum_{k=1}^{\infty} \lfloor \frac{n}{5^k} \rfloor \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Pure & Mixed Recurring Decimal Transitions</h4>
+                    <p>Pure repeating conversion patterns to fractions:</p>
+                    <div class="math-block">\[ 0.\bar{x} = \frac{x}{9}, \quad 0.\overline{xyz} = \frac{xyz}{999} \]</div>
+                    <p>Mixed recurring formats to pure ratios configuration rule:</p>
+                    <div class="math-block">\[ a.b\overline{cd} = \frac{\text{Total Int} - \text{Non-Repeating String}}{\text{9 for every loop digit, 0 for every free decimal}} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Divisibility Structural Evaluators</h4>
+                    <p><b>6:</b> Simultaneously match by 2 & 3 | <b>8:</b> Last 3 digits must evaluate base-8 modularly</p>
+                    <p><b>9:</b> Absolute sum of individual digits \(= 9k\) | <b>11:</b> \(|\sum \text{Odd} - \sum \text{Even}| = 0 \text{ or } 11k\)</p>
+                    <p><b>24:</b> Coprime factors evaluate 3 & 8 | <b>72:</b> Coprime factors evaluate 8 & 9</p>
+                </div>
+            </div>
         </div>
-    </nav>
 
-    <main class="library-content container">
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Search for any formula, topic or chapter..." id="librarySearch">
+        <div class="topic-group">
+            <h3 class="topic-title">HCF & LCM Properties</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Integer Product Identity</h4>
+                    <div class="math-block">\[ n_1 \times n_2 = \text{HCF} \times \text{LCM} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Fractions HCF & LCM Algorithms</h4>
+                    <div class="math-block">\[ \text{HCF} = \frac{\text{HCF of Numerators}}{\text{LCM of Denominators}} \]
+                        \[ \text{LCM} = \frac{\text{LCM of Numerators}}{\text{HCF of Denominators}} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Constant Remainder Difference Rule</h4>
+                    <p>When dividers \(a, b, c\) leave differences matching constant value \( (a - r_1) = (b - r_2) = (c - r_3) = k \):</p>
+                    <div class="math-block">\[ \text{Target Number} = \text{LCM}(a, b, c) - k \]</div>
+                </div>
+            </div>
         </div>
 
-        <!-- CHAPTER 1: ARITHMETIC -->
-        <section class="chapter-section" id="arithmetic">
-            <h2 class="chapter-title">I. Arithmetic & Commercial Math</h2>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Number Systems & Divisibility</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Sum of First n Natural Numbers</h4>
-                        <div class="math-block">\[ \text{Sum} = \frac{n(n + 1)}{2} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Sum of First n Odd Numbers</h4>
-                        <div class="math-block">\[ \text{Sum} = n^2 \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Trailing Zeros (Legendre's Formula)</h4>
-                        <p>Exponent of 5 in \(n!\)</p>
-                        <div class="math-block">\[ E_5(n!) = \sum_{k=1}^{\infty} \lfloor \frac{n}{5^k} \rfloor \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Divisibility Rules</h4>
-                        <p><b>6:</b> By 2 & 3 | <b>8:</b> Last 3 digits | <b>9:</b> Sum of digits | <b>11:</b> Odd/Even place diff is 0 or \(11k\)</p>
-                        <p><b>24:</b> By 3 & 8 | <b>72:</b> By 8 & 9</p>
-                    </div>
+        <div class="topic-group">
+            <h3 class="topic-title">Percentage, Profit, Loss & Commercial Markups</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Consumption Adjustment Index</h4>
+                    <p>If metric A scales \(r\%\) above metric B, then B decreases relative to A by:</p>
+                    <div class="math-block">\[ \text{Reduction Rate} = \left[ \frac{r}{100 + r} \right] \times 100\% \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Decimal Multiplier Engine Rule</h4>
+                    <div class="math-block">\[ \text{Adjusted Value} = x \cdot \left(1 \pm \frac{r}{100}\right) \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Successive Geometric Compound Changes</h4>
+                    <div class="math-block">\[ \text{Net Effective Percentage} = a + b + \frac{ab}{100} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Cost Price to Marked Price Structural Identity</h4>
+                    <div class="math-block">\[ \frac{\text{Cost Price (CP)}}{\text{Marked Price (MP)}} = \frac{100 - \text{Discount}\%}{100 + \text{Profit}\%} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Item Count Equivalence Margin Rule</h4>
+                    <p>Calculated markup margin when the cost profile of A units matches the sale execution profile of B units:</p>
+                    <div class="math-block">\[ \text{Profit Value}\% = \left[ \frac{A - B}{B} \right] \times 100\% \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Dishonest Vendor Yield Variance</h4>
+                    <div class="math-block">\[ \text{Yield Gain}\% = \left[ \frac{\text{Error Weight Deviation}}{\text{True Target Weight} - \text{Error Weight Deviation}} \right] \times 100\% \]</div>
                 </div>
             </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">HCF & LCM</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Product Property</h4>
-                        <div class="math-block">\[ n_1 \times n_2 = \text{HCF} \times \text{LCM} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>HCF & LCM of Fractions</h4>
-                        <div class="math-block">\[ \text{HCF} = \frac{\text{HCF of Num}}{\text{LCM of Den}} \]
-                        \[ \text{LCM} = \frac{\text{LCM of Num}}{\text{HCF of Den}} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Constant Remainder</h4>
-                        <p>If \( (a - r_1) = (b - r_2) = (c - r_3) = k \)</p>
-                        <div class="math-block">\[ \text{Number} = \text{LCM}(a, b, c) - k \]</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Percentage & Commercial</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Consumption Adjustment</h4>
-                        <p>If A is \(r\%\) more than B, B is less by:</p>
-                        <div class="math-block">\[ \left[ \frac{r}{100 + r} \right] \times 100\% \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Decimal Multiplier Rule</h4>
-                        <div class="math-block">\[ \text{Value} = x \cdot (1 \pm \frac{r}{100}) \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Successive Net Change</h4>
-                        <div class="math-block">\[ a + b + \frac{ab}{100} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Profit, Loss & Marked Price</h4>
-                        <div class="math-block">\[ \frac{CP}{MP} = \frac{100 - D\%}{100 + P\%} \]</div>
-                        <div class="math-block">\[ \text{Profit}\% = \left[ \frac{A - B}{B} \right] \times 100\% \]</div>
-                        <p><small>(Where CP of A items = SP of B items)</small></p>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Dishonest Dealer Gain</h4>
-                        <div class="math-block">\[ \text{Gain}\% = \frac{\text{Error}}{\text{True Value} - \text{Error}} \times 100\% \]</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Interest & Compounding</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Simple Interest (SI)</h4>
-                        <div class="math-block">\[ \text{SI} = \frac{P \times R \times T}{100} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>SI Doubling Time (Linear Multiplier)</h4>
-                        <div class="math-block">\[ (N - 1) = \frac{R \times T}{100} \]</div>
-                        <p><small>\(N\) is the multiplication factor.</small></p>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Compound Interest (CI)</h4>
-                        <div class="math-block">\[ A = P(1 + \frac{R}{100})^n \]</div>
-                        <div class="math-block">\[ \text{Eff. Rate} = R_1 + R_2 + \frac{R_1 R_2}{100} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>CI Power Law Rule</h4>
-                        <p>If sum turns \(X\) times in \(Y\) years, it scales to \(X^M\) times in \(M \times Y\) years.</p>
-                    </div>
-                    <div class="formula-card">
-                        <h4>CI vs SI Differences</h4>
-                        <p><b>2 Years:</b> \( \text{Diff} = P(\frac{R}{100})^2 \)</p>
-                        <p><b>3 Years:</b> \( P(\frac{R}{100})^2 \times (3 + \frac{R}{100}) \)</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Averages, Work & Movement</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Time, Speed & Distance</h4>
-                        <p><b>Late/Early Formula:</b></p>
-                        <div class="math-block">\[ \text{Dist} = \frac{S_1 \times S_2}{|S_1 - S_2|} \times \frac{\Delta T}{60} \]</div>
-                        <p><b>Average Speed (Equal Dist):</b> \( \frac{2xy}{x+y} \)</p>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Boat & Stream Dynamics</h4>
-                        <div class="math-block">\[ S_D = x+y, \quad S_U = x-y \]</div>
-                        <div class="math-block">\[ x = \frac{D+U}{2}, \quad y = \frac{D-U}{2} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Time & Work / Pipes</h4>
-                        <div class="math-block">\[ \frac{1}{T_{total}} = \frac{1}{A} + \frac{1}{B} \]</div>
-                        <div class="math-block">\[ \frac{n}{h_1} - \frac{\text{Total} - n}{h_2} = \frac{1}{T_{total}} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Man-Days Rule</h4>
-                        <div class="math-block">\[ M_1 D_1 H_1 = M_2 D_2 H_2 \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Inverse Proportion (Seesaw)</h4>
-                        <div class="math-block">\[ x_1 \cdot y_1 = x_2 \cdot y_2 = k \]</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CHAPTER 2: ALGEBRA -->
-        <section class="chapter-section" id="algebra">
-            <h2 class="chapter-title">II. Algebra & Modern Math</h2>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Identities & Equations</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Core Identities</h4>
-                        <div class="math-block">\[ (a \pm b)^2 = a^2 \pm 2ab + b^2 \]
-                        \[ (a+b)^2 - (a-b)^2 = 4ab \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Cubic & Trinomial</h4>
-                        <div class="math-block">\[ (x+y+z)^2 = \sum x^2 + 2\sum xy \]
-                        \[ a^3+b^3+c^3-3abc = (a+b+c)(\dots) \]</div>
-                        <p><small>If \(a+b+c=0\), then \(a^3+b^3+c^3 = 3abc\)</small></p>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Quadratic Vertex Form</h4>
-                        <div class="math-block">\[ y = a(x-h)^2 + k \implies V(h,k) \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Quadratic Roots (Vieta's)</h4>
-                        <div class="math-block">\[ \alpha+\beta = -b/a, \quad \alpha\beta = c/a \]
-                        \[ (\alpha-\beta)^2 = (\alpha+\beta)^2 - 4\alpha\beta \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Factoring Pair Sorting</h4>
-                        <div class="math-block">\[ x^3+x^2+x+1 = (x^2+1)(x+1) \]</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Logarithms & Exponents</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Change of Base & Reciprocal</h4>
-                        <div class="math-block">\[ \log_a b = \frac{\log_c b}{\log_c a} = \frac{1}{\log_b a} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Char & Mantissa</h4>
-                        <p><b>Digits (\(x>1\)):</b> \(Char = Digits - 1\)</p>
-                        <p><b>Decimals (\(x<1\)):</b> \(Char = -1 - zeros\)</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Sets & Combinatorics</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Set Cardinality</h4>
-                        <div class="math-block">\[ n(A \cup B) = n(A-B) + n(B-A) + n(A \cap B) \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Stars and Bars (Repetition Allowed)</h4>
-                        <div class="math-block">\[ ^{(n+r-1)}C_r \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Combinatoric Inverse Filter</h4>
-                        <div class="math-block">\[ \text{Fav} = \text{Total} - \text{None} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Circular Permutations</h4>
-                        <div class="math-block">\[ (n-1)! \]</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Progressions</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>AP Common Diff Shortcut</h4>
-                        <div class="math-block">\[ d = \frac{a_p - a_q}{p - q} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Fibonacci Sigma Sum</h4>
-                        <div class="math-block">\[ \sum F_k = F_{n+2} - 1 \]</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CHAPTER 3: GEOMETRY -->
-        <section class="chapter-section" id="geometry">
-            <h2 class="chapter-title">III. Geometry & Trigonometry</h2>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Coordinate & Theoretical Geometry</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Distance & Midpoint</h4>
-                        <div class="math-block">\[ d = \sqrt{\Delta x^2 + \Delta y^2}, \quad M(\frac{\sum x}{2}, \frac{\sum y}{2}) \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Theorems for Circle & Triangle</h4>
-                        <p><b>Inradius:</b> \( r = Area/s \)</p>
-                        <p><b>Circumradius:</b> \( R = abc/4A \)</p>
-                        <p><b>Angle Bisector:</b> \( BD/DC = AB/AC \)</p>
-                        <p><b>Apollonius:</b> \( AB^2+AC^2 = 2(AD^2+BD^2) \)</p>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Circle Properties</h4>
-                        <p><b>Double Angle:</b> \( \angle Ctr = 2 \times \angle Circ \)</p>
-                        <p><b>Cyclic Quad:</b> \( \angle Opp = 180^\circ \)</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Mensuration 2D & Pathways</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Equilateral Geometry</h4>
-                        <div class="math-block">\[ H = \frac{\sqrt{3}}{2}a, \quad Area = \frac{\sqrt{3}}{4}a^2 \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Pathways (Width w)</h4>
-                        <p><b>Outer:</b> \( 2w(l+b+2w) \)</p>
-                        <p><b>Inner:</b> \( 2w(l+b-2w) \)</p>
-                        <p><b>Cross:</b> \( w(l+b-w) \)</p>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Circles & Polygons</h4>
-                        <p><b>Arc Length:</b> \( \frac{\theta}{360} 2\pi r \)</p>
-                        <p><b>Semicircle Perim:</b> \( \pi r + 2r \)</p>
-                        <p><b>Regular Int. Angle:</b> \( 180 - \frac{360}{n} \)</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Advanced 3D Solids</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Cone Frustum (Bucket)</h4>
-                        <div class="math-block">\[ V = \frac{1}{3}\pi h(R^2+r^2+Rr) \]
-                        \[ CSA = \pi(R+r)l \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Recasting & Scaling</h4>
-                        <div class="math-block">\[ n = (R/r)^3 \]</div>
-                        <p><small>Scale \(k \to Area: k^2, Vol: k^3\)</small></p>
-                    </div>
-                    <div class="formula-card">
-                        <h4>LSA & Hollow Solids</h4>
-                        <p><b>LSA Cuboid:</b> \( 2h(l+b) \)</p>
-                        <p><b>Hollow Cyl:</b> \( \pi h(R^2-r^2) \)</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CHAPTER 4: STATS & LOGIC -->
-        <section class="chapter-section" id="stats-logic">
-            <h2 class="chapter-title">IV. Statistics & Logical Reasoning</h2>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Advanced Statistics</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Assumed Mean (Deviation)</h4>
-                        <div class="math-block">\[ \bar{x} = A + \frac{\sum d}{n} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Combined Variance</h4>
-                        <div class="math-block">\[ \sigma^2_{12} = \frac{n_1(\sigma_1^2+d_1^2) + n_2(\sigma_2^2+d_2^2)}{n_1+n_2} \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Origin & Scale Effects</h4>
-                        <p><b>Shift (\(\pm k\)):</b> \(\sigma\) No Change</p>
-                        <p><b>Scale (\(\times k\)):</b> \( \sigma_{new} = |k|\sigma \)</p>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Empirical & Quartiles</h4>
-                        <p><b>Mode:</b> \( 3Med - 2Mean \)</p>
-                        <p><b>IQR:</b> \( Q_3 - Q_1 \)</p>
-                        <p><b>Rank \(Q_3\):</b> \( \frac{3(N+1)}{4} \)</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="topic-group">
-                <h3 class="topic-title">Logical Reasoning</h3>
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <h4>Positional Ranking</h4>
-                        <div class="math-block">\[ Rank_R = (Total - Rank_L) + 1 \]</div>
-                    </div>
-                    <div class="formula-card">
-                        <h4>Alphabetical Matrix</h4>
-                        <div class="math-block">\[ Left + Right = 27 \]</div>
-                        <p><small>Used for reverse rank decoding.</small></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Santosh TechWorks. Formula Library v3.0 | <a href="index.html" style="color: white;">Main Site</a></p>
         </div>
-    </footer>
 
-    <script>
-        // Search Filter
-        const searchInput = document.getElementById('librarySearch');
-        const cards = document.querySelectorAll('.formula-card');
-        const groups = document.querySelectorAll('.topic-group');
-        const sections = document.querySelectorAll('.chapter-section');
+        <div class="topic-group">
+            <h3 class="topic-title">Simple, Compound Interest & Financial Compounding</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Simple Interest (SI) Core</h4>
+                    <div class="math-block">\[ \text{SI} = \frac{P \times R \times T}{100} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>SI Linear Velocity Doubling Constant</h4>
+                    <p>Determining the duration framework needed to multiply a principal value \(N\) times over linearly:</p>
+                    <div class="math-block">\[ (N - 1) = \frac{R \times T}{100} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Compound Interest (CI) Accrued Valuation</h4>
+                    <div class="math-block">\[ \text{Amount (A)} = P \left(1 + \frac{R}{100}\right)^n \]</div>
+                    <p>Compounded semi-annually transformation adjustments template:</p>
+                    <div class="math-block">\[ A = P \left(1 + \frac{R / 2}{100}\right)^{2n} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>CI Geometric Multiplier Power Law</h4>
+                    <p>If an investment asset changes scale factor \(X\) times within \(Y\) years, it scales up to index power \(X^M\) times within a time horizon of:</p>
+                    <div class="math-block">\[ \text{Target Horizon} = M \times Y \text{ Years} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Spread Delta Variance Filters (CI - SI Differences)</h4>
+                    <p><b>2-Year Variance:</b> \[ \Delta_2 = P \left(\frac{R}{100}\right)^2 \]</p>
+                    <p><b>3-Year Variance:</b> \[ \Delta_3 = P \left(\frac{R}{100}\right)^2 \times \left(3 + \frac{R}{100}\right) \]</p>
+                </div>
+            </div>
+        </div>
 
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
+        <div class="topic-group">
+            <h3 class="topic-title">Averages, Mixtures, Work & Motion Velocities</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Late / Early Structural Transit Shortcut</h4>
+                    <p>Locating total linear track distances using mismatched travel velocities paired with their late/early arrival differences:</p>
+                    <div class="math-block">\[ \text{Distance} = \frac{S_1 \times S_2}{|S_1 - S_2|} \times \left( \frac{\Delta T \text{ minutes}}{60} \right) \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Average Velocity Framework</h4>
+                    <p>When evaluating uniform tracking distributions split across matching geometric distances:</p>
+                    <div class="math-block">\[ \text{Average Speed} = \frac{2xy}{x + y} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Relative Velocity Vectors</h4>
+                    <p><b>Collinear Parallel (Same Path):</b> \( S_{rel} = |S_1 - S_2| \)</p>
+                    <p><b>Antiparallel Inverse (Facing Convergence):</b> \( S_{rel} = S_1 + S_2 \)</p>
+                </div>
+                <div class="formula-card">
+                    <h4>Hydrodynamic Vectors (Boat & Stream Speed)</h4>
+                    <div class="math-block">\[ S_{\text{Downstream}} (S_D) = x + y, \quad S_{\text{Upstream}} (S_U) = x - y \]</div>
+                    <div class="math-block">\[ \text{Hull Velocity (x)} = \frac{S_D + S_U}{2}, \quad \text{Stream Current (y)} = \frac{S_D - S_U}{2} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Time & Work Integration Rate</h4>
+                    <div class="math-block">\[ \frac{1}{T_{\text{total}}} = \frac{1}{A} + \frac{1}{B} \implies T_{\text{total}} = \frac{A \cdot B}{A + B} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Hydrodynamic Cistern Flux Matrix</h4>
+                    <p>Evaluating standard arrays involving \(n\) identical fluid injectors paired alongside active system drainage output taps:</p>
+                    <div class="math-block">\[ \frac{n}{h_{\text{fill}}} - \frac{\text{Total Taps Config} - n}{h_{\text{empty}}} = \frac{1}{T_{\text{net}}} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>The Chain Rule / Man-Days Structural Formula</h4>
+                    <div class="math-block">\[ M_1 \cdot D_1 \cdot H_1 = M_2 \cdot D_2 \cdot H_2 \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Inverse Proportion Balance System</h4>
+                    <p>When structural work allocations, capacity parameters, or velocity systems run on fixed constants:</p>
+                    <div class="math-block">\[ x_1 \cdot y_1 = x_2 \cdot y_2 = k \]</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                card.style.display = text.includes(term) ? 'flex' : 'none';
-            });
+    <section class="chapter-section" id="algebra">
+        <h2 class="chapter-title">II. Algebra & Modern Math</h2>
 
-            groups.forEach(group => {
-                const visibleCards = group.querySelectorAll('.formula-card[style="display: flex;"]');
-                group.style.display = visibleCards.length > 0 ? 'block' : 'none';
-            });
+        <div class="topic-group">
+            <h3 class="topic-title">Identities, Quadratics & Polynomial Factorings</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Core Algebraic Expansions</h4>
+                    <div class="math-block">\[ (a \pm b)^2 = a^2 \pm 2ab + b^2 \]
+                        \[ (a + b)^2 - (a - b)^2 = 4ab \]
+                        \[ (a + b)(a - b) = a^2 - b^2 \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Cubic Polynomials & Trinomial Multi-Variables</h4>
+                    <div class="math-block">\[ (x + y + z)^2 = x^2 + y^2 + z^2 + 2(xy + yz + zx) \]
+                        \[ (x - y)^3 = x^3 - y^3 - 3xy(x - y) \]</div>
+                    <p>Conditional trinomial constraint factoring logic rule:</p>
+                    <div class="math-block">\[ \text{If } a + b + c = 0 \implies a^3 + b^3 + c^3 = 3abc \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Quadratic Graph Vertex Tracking Layout</h4>
+                    <div class="math-block">\[ y = a(x - h)^2 + k \implies \text{Vertex Extremum Coordinates at } G(h, k) \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Roots Relationships & Boundaries Matrix (Vieta's Rules)</h4>
+                    <div class="math-block">\[ \text{Sum: } \alpha + \beta = -\frac{b}{a}, \quad \text{Product: } \alpha\beta = \frac{c}{a} \]
+                        \[ \text{Root Dispersion Identity: } (\alpha - \beta)^2 = (\alpha + \beta)^2 - 4\alpha\beta \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Multi-Variable Group Polynomial Factoring Sorting</h4>
+                    <div class="math-block">\[ x^3 + x^2 + x + 1 = x^2(x + 1) + 1(x + 1) = (x^2 + 1)(x + 1) \]</div>
+                </div>
+            </div>
+        </div>
 
-            sections.forEach(section => {
-                const visibleGroups = section.querySelectorAll('.topic-group[style="display: block;"]');
-                section.style.display = visibleGroups.length > 0 ? 'block' : 'none';
-            });
+        <div class="topic-group">
+            <h3 class="topic-title">Logarithms, Surds & Exponents Laws</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Logarithm Base Transmutations</h4>
+                    <div class="math-block">\[ \log_a b = \frac{\log_c b}{\log_c a} = \frac{1}{\log_b a} \]</div>
+                    <p>Expansion frameworks template:</p>
+                    <div class="math-block">\[ \log(xy) = \log x + \log y, \quad \log(\frac{x}{y}) = \log x - \log y, \quad \log(x^n) = n\log x \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Characteristic & Mantissa Bounds Tracker</h4>
+                    <div class="math-block">\[ \log_{10} x = \text{Characteristic (Integer component)} + \text{Mantissa (Decimal component)} \]</div>
+                    <p><b>Positive Strings Profile (\(x > 1\)):</b> \( \text{Characteristic Value} = \text{Total Digits} - 1 \)</p>
+                    <p><b>Sub-Unit Fractions Profile (\(x < 1\)):</b> \( \text{Characteristic Value} = -1 - \text{Leading Zero Count} \)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-group">
+            <h3 class="topic-title">Set Theory & Advanced Combinatorics</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Set Cardinality Partition Structures</h4>
+                    <div class="math-block">\[ n(A \cup B) = n(A - B) + n(B - A) + n(A \cap B) \]
+                        \[ n(A \cup B) = n(A) + n(B) - n(A \cap B) \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Stars & Bars Multi-Set Distribution Formula</h4>
+                    <p>Distributing \(r\) identical objects among \(n\) distinct, unique bins (allowing items to repeat):</p>
+                    <div class="math-block">\[ \text{Valid Arrangements} = \,^{(n + r - 1)}C_r \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Inverse Selection Filter (Complementary Strategy)</h4>
+                    <div class="math-block">\[ \text{Target Favorable Selection} = \text{Total Permutations Space} - \text{Zero Match Profiles} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Circular Structural Constellations Permutations</h4>
+                    <div class="math-block">\[ \text{Circular Permutations Count} = (n - 1)! \]</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-group">
+            <h3 class="topic-title">Progressions & Summation Dynamics</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>AP Common Difference Shortcut Template</h4>
+                    <p>Evaluating internal system changes directly from any two mismatched sequence positions:</p>
+                    <div class="math-block">\[ d = \frac{a_p - a_q}{p - q} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Progression Mean Identifiers</h4>
+                    <p><b>Arithmetic:</b> \( \text{AM} = \frac{a+b}{2} \) | <b>Geometric:</b> \( \text{GM} = \sqrt{ab} \) | <b>Harmonic:</b> \( \text{HM} = \frac{2ab}{a+b} \)</p>
+                </div>
+                <div class="formula-card">
+                    <h4>Fibonacci Series Summation Properties</h4>
+                    <div class="math-block">\[ \sum_{k=1}^{n} F_k = F_{n+2} - 1 \]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter-section" id="geometry">
+        <h2 class="chapter-title">III. Geometry & Trigonometry</h2>
+
+        <div class="topic-group">
+            <h3 class="topic-title">Coordinate Planes & Theoretical Geometry Triangles</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Coordinate Distance & Midpoint Matrices</h4>
+                    <div class="math-block">\[ d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}, \quad M = \left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right) \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Triangle Boundary Radius Intercept Properties</h4>
+                    <p><b>Inradius Geometry:</b> \[ r = \frac{\text{Area of Triangle}}{\text{Semi-perimeter (s)}} \]</p>
+                    <p><b>Circumradius Geometry:</b> \[ R = \frac{a \cdot b \cdot c}{4 \times \text{Area of Triangle}} \]</p>
+                </div>
+                <div class="formula-card">
+                    <h4>Internal Angle Bisector Split Theorem</h4>
+                    <div class="math-block">\[ \frac{\text{Base Line Left Segment (BD)}}{\text{Base Line Right Segment (DC)}} = \frac{\text{Adjacent Side Vector (AB)}}{\text{Adjacent Side Vector (AC)}} \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Apollonius Median Vector Triangle Solution</h4>
+                    <div class="math-block">\[ AB^2 + AC^2 = 2(AD^2 + BD^2) \]</div>
+                    <p><small>(Where \(AD\) functions as the geometric median tracking down base vector \(BC\)).</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>Inscribed Circle Angular Layout Rules</h4>
+                    <p><b>Central Angle Arc Ratio:</b> \[ \angle \text{Center Position} = 2 \times \angle \text{Circumference Track} \]</p>
+                    <p><b>Cyclic Quadrilateral Opposite Interior Angles Theorem:</b> \[ \angle A + \angle C = 180^\circ \text{ and } \angle B + \angle D = 180^\circ \]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-group">
+            <h3 class="topic-title">Mensuration 2D Properties & Pathway Trajectories</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Equilateral Triangle Properties</h4>
+                    <div class="math-block">\[ \text{Altitude Height (H)} = \frac{\sqrt{3}}{2}a, \quad \text{Area Coverage} = \frac{\sqrt{3}}{4}a^2 \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Architectural Pathways (Width Parameter: w)</h4>
+                    <p><b>Outer Pathway Boundary Edge:</b> \[ \text{Area} = 2w(l + b + 2w) \]</p>
+                    <p><b>Inner Pathway Boundary Edge:</b> \[ \text{Area} = 2w(l + b - 2w) \]</p>
+                    <p><b>Central Cross-Axis Intersection Track:</b> \[ \text{Area} = w(l + b - w) \]</p>
+                </div>
+                <div class="formula-card">
+                    <h4>Circles, Sectors & Regular Polygons</h4>
+                    <p><b>Arc Segment Path Length:</b> \[ L = \frac{\theta}{360^\circ} \times 2\pi r \]</p>
+                    <p><b>Semicircle Total Perimeter:</b> \[ P = \pi r + 2r \]</p>
+                    <p><b>Regular Polygon Interior Angle Layout:</b> \[ \text{Angle} = 180^\circ - \frac{360^\circ}{n} \]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-group">
+            <h3 class="topic-title">Advanced 3D Volumetric Solids</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Cone Frustum Solid Geometry</h4>
+                    <div class="math-block">\[ \text{Volume (V)} = \frac{1}{3}\pi h(R^2 + r^2 + Rr) \]
+                        \[ \text{Curved Surface Area (CSA)} = \pi(R + r)l \quad [ \text{where } l = \sqrt{h^2 + (R - r)^2} ] \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Recasting & Isomorphic Metric Scaling Laws</h4>
+                    <div class="math-block">\[ \text{Total Small Spheres Cast Count (n)} = \left(\frac{\text{Radius}_{\text{Large Solid}}}{\text{Radius}_{\text{Small Component}}}\right)^3 \]</div>
+                    <p><small>Isomorphic Vector Scale Factor Changes: \( k \implies \text{Area Scales By } k^2, \text{ Volume Scales By } k^3 \)</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>Lateral Interfaces & Hollow Shell Structural Capacities</h4>
+                    <p><b>Cuboid Lateral Surface Area (4 Walls):</b> \[ \text{LSA} = 2h(l + b) \]</p>
+                    <p><b>Hollow Right Cylinder Matrix Capacity:</b> \[ \text{Volume} = \pi h (R^2 - r^2) \]</p>
+                    <p><b>Hemisphere Solid Total Surface Interface:</b> \[ \text{TSA} = 3\pi r^2 \]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter-section" id="stats-logic">
+        <h2 class="chapter-title">IV. Statistics & Logical Reasoning</h2>
+
+        <div class="topic-group">
+            <h3 class="topic-title">Advanced Data Statistics</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Assumed Mean Shortcut (Deviation Method)</h4>
+                    <div class="math-block">\[ \bar{x} = A + \frac{\sum d}{n} \]</div>
+                    <p><small>(Where \(A\) is the manually selected pivot point, and \(d = x - A\) metrics tracking system data sets).</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>Combined Workspace Multi-Group Variance</h4>
+                    <div class="math-block">\[ \sigma^2_{12} = \frac{n_1(\sigma_1^2 + d_1^2) + n_2(\sigma_2^2 + d_2^2)}{n_1 + n_2} \]</div>
+                    <p><small>Where deviations configuration run on tracking values: \( d_1 = \bar{x}_1 - \bar{x}_{\text{combined}} \) and \( d_2 = \bar{x}_2 - \bar{x}_{\text{combined}} \).</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>Mathematical Shift Properties (Origin vs Scale)</h4>
+                    <p><b>Additive Shifts (Change of Origin) \( \pm k \):</b> Mean values move up or down, but spread metrics (\(\sigma, \sigma^2\)) remain unchanged.</p>
+                    <p><b>Multiplicative Adjustments (Change of Scale) \( \times k \):</b> Mean adjustments change by factor \(k\), Standard Deviations change by factor \(|k|\), and Variance changes by factor \(k^2\).</p>
+                </div>
+                <div class="formula-card">
+                    <h4>Empirical Distributions & Quartile Limits</h4>
+                    <p><b>Moderately Skewed Systems Empirical Rule:</b> \[ \text{Mode} = 3 \times \text{Median} - 2 \times \text{Mean} \]</p>
+                    <p><b>Interquartile Range (IQR):</b> \[ \text{IQR} = Q_3 - Q_1 \]</p>
+                    <p><b>Upper Quartile Location Rank Index:</b> \[ \text{Rank Index Range } Q_3 = \frac{3(N + 1)}{4} \]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-group">
+            <h3 class="topic-title">Logical Reasoning Matrix Systems</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Linear Positional Positioning Calculations</h4>
+                    <div class="math-block">\[ \text{Rank from Right Boundary} = (\text{Total Structural Space Count} - \text{Rank from Left Boundary}) + 1 \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Alphabetical Cipher Traversal Key</h4>
+                    <div class="math-block">\[ \text{Forward Sequence Index Rank} + \text{Inverse String Reverse Rank} = 27 \]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 Santosh TechWorks. Formula Library v3.0 | <a href="index.html" style="color: white;">Main Site</a></p>
+    </div>
+</footer>
+
+<script>
+    // Production Real-time Search Engine Filter Module
+    const searchInput = document.getElementById('librarySearch');
+    const cards = document.querySelectorAll('.formula-card');
+    const groups = document.querySelectorAll('.topic-group');
+    const sections = document.querySelectorAll('.chapter-section');
+
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+
+        cards.forEach(card => {
+            const text = card.innerText.toLowerCase();
+            card.style.display = text.includes(term) ? 'flex' : 'none';
         });
 
-        // Theme Toggle Logic
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const htmlElement = document.documentElement;
-
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        htmlElement.setAttribute('data-theme', savedTheme);
-        if(themeIcon) themeIcon.textContent = savedTheme === 'light' ? '🌙' : '☀️';
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            if(themeIcon) themeIcon.textContent = newTheme === 'light' ? '🌙' : '☀️';
+        groups.forEach(group => {
+            const visibleCards = group.querySelectorAll('.formula-card[style="display: flex;"]');
+            group.style.display = visibleCards.length > 0 ? 'block' : 'none';
         });
-    </script>
+
+        sections.forEach(section => {
+            const visibleGroups = section.querySelectorAll('.topic-group[style="display: block;"]');
+            section.style.display = visibleGroups.length > 0 ? 'block' : 'none';
+        });
+    });
+
+    // Universal UI Data-Theme Switcher State Controller
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlElement = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', savedTheme);
+    if(themeIcon) themeIcon.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        if(themeIcon) themeIcon.textContent = newTheme === 'light' ? '🌙' : '☀️';
+    });
+</script>
 </body>
 </html>
