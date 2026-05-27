@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,27 +14,27 @@
     }
     </script>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">Santosh TechWorks</div>
+            <a href="#" class="logo">Santosh TechWorks</a>
             <ul class="nav-links">
-                <li><a href="#home" onclick="scrollToSection(event, 'home')">Home</a></li>
-                <li><a href="#apps" onclick="scrollToSection(event, 'apps')">Apps</a></li>
-                <li><a href="#web-projects" onclick="scrollToSection(event, 'web-projects')">Websites</a></li>
-                <li><a href="#features" onclick="scrollToSection(event, 'features')">Services</a></li>
-                <li><a href="#about" onclick="scrollToSection(event, 'about')">About</a></li>
-                <li><a href="#contact" onclick="scrollToSection(event, 'contact')">Contact</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#apps">Apps</a></li>
+                <li><a href="#web-projects">Websites</a></li>
+                <li><a href="#features">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                        <span id="theme-icon">🌙</span>
+                    </button>
+                </li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
@@ -42,19 +42,17 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Santosh TechWorks</h1>
-                <div class="scrolling-text">SANTOSH TECHWORKS PRESENTS WITH LOVE</div>
                 <p class="subtitle">Innovative Technology Solutions</p>
-                <p class="description">Delivering cutting-edge digital solutions, web development, AI integration, and custom software tailored to your business needs.</p>
+                <h1>Santosh TechWorks</h1>
 
-                <!-- Ad Unit Top -->
-                <div class="ad-container-top" style="margin: 20px 0; min-height: 90px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-                    <span style="color: rgba(255,255,255,0.3); font-size: 0.8rem;">Advertisement</span>
-                    <!-- Paste Ad Code Here -->
+                <div class="scrolling-text-container">
+                    <div class="scrolling-text">SANTOSH TECHWORKS PRESENTS WITH LOVE • INNOVATION IN EVERY LINE OF CODE • AI-POWERED EDUCATION • </div>
                 </div>
 
+                <p class="description">Delivering cutting-edge digital solutions, web development, AI integration, and custom software tailored to your business needs.</p>
+
                 <div class="cta-buttons">
-                    <a href="#apps" class="btn btn-primary">Our Apps</a>
+                    <a href="#apps" class="btn btn-primary">Explore Apps</a>
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                 </div>
             </div>
@@ -93,35 +91,28 @@
                 <div class="app-info">
                     <div class="app-tag">Featured App</div>
                     <h3>Quant-Elite</h3>
-                    <p class="app-description">Master mathematics and quantitative aptitude with Quant-Elite, the ultimate preparation tool for competitive exams. Blending structured academic practice with advanced AI mentorship and real-time gamification.</p>
+                    <p class="app-description">Master mathematics and quantitative aptitude with Quant-Elite, the ultimate preparation tool for competitive exams. Blending academic practice with advanced AI mentorship.</p>
 
                     <div class="app-features-list">
                         <div class="app-feature-item">
                             <span class="icon">🤖</span>
                             <div>
                                 <strong>Ganitacharya AI Mentor</strong>
-                                <p>Personalized math guide using voice, text, or image analysis to provide step-by-step solutions.</p>
+                                <p>Personalized math guide using voice, text, or image analysis for step-by-step solutions.</p>
                             </div>
                         </div>
                         <div class="app-feature-item">
                             <span class="icon">⚔️</span>
                             <div>
                                 <strong>Quiz Clash (BETA)</strong>
-                                <p>Real-time multiplayer arena with global matchmaking, private lobbies, and intelligent bot substitution.</p>
+                                <p>Real-time multiplayer arena with global matchmaking and private lobbies.</p>
                             </div>
                         </div>
                         <div class="app-feature-item">
                             <span class="icon">📊</span>
                             <div>
                                 <strong>Performance Analysis</strong>
-                                <p>Advanced mapping of strengths/weaknesses via radar charts and downloadable Mastery Certificates.</p>
-                            </div>
-                        </div>
-                        <div class="app-feature-item">
-                            <span class="icon">📚</span>
-                            <div>
-                                <strong>Smart Learning Tree</strong>
-                                <p>Gamified path with LaTeX tutorials, visual diagrams, and competitive mock test zones.</p>
+                                <p>Detailed mapping via radar charts and downloadable Mastery Certificates.</p>
                             </div>
                         </div>
                     </div>
@@ -131,19 +122,22 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
                         </a>
                         <a href="https://indusapp.store/2xanb2rz" class="store-btn">
-                            <img src="https://raw.githubusercontent.com/IndusAppstore/brand-assets/main/badges/get-it-on-indus-appstore.png" alt="Get it on Indus Appstore" onerror="this.src='https://img.icons8.com/color/48/android-os.png'; this.parentElement.innerHTML+='<span>Indus Appstore</span>'">
-                        </a>
-                        <a href="https://uptodown.com/" class="store-btn">
-                            <img src="https://files.uptodown.com/static/images/uptodown-badge-en.png" alt="Download on Uptodown" onerror="this.src='https://img.icons8.com/color/48/download.png'; this.parentElement.innerHTML+='<span>Uptodown</span>'">
+                            <img src="https://raw.githubusercontent.com/IndusAppstore/brand-assets/main/badges/get-it-on-indus-appstore.png" alt="Get it on Indus Appstore">
                         </a>
                     </div>
                 </div>
                 <div class="app-preview">
-                    <div class="phone-frame">
-                        <img src="app-preview.png" alt="Quant-Elite App Screenshot" class="app-screenshot">
-                    </div>
+                    <img src="app-preview.png" alt="Quant-Elite App Screenshot">
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section (Scrolling) -->
+    <section class="tech-stack">
+        <div class="tech-track">
+            <span>Flutter</span> <span>Dart</span> <span>Firebase</span> <span>Google Cloud AI</span> <span>Python</span> <span>Node.js</span> <span>React</span> <span>TensorFlow</span> <span>AWS</span> <span>Docker</span>
+            <span>Flutter</span> <span>Dart</span> <span>Firebase</span> <span>Google Cloud AI</span> <span>Python</span> <span>Node.js</span> <span>React</span> <span>TensorFlow</span> <span>AWS</span> <span>Docker</span>
         </div>
     </section>
 
@@ -153,34 +147,22 @@
             <h2>Web Portfolio</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-image">
-                        <div class="placeholder-img">🛠️ Admin Dashboard</div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Quant-Elite Admin Panel</h3>
-                        <p>A centralized management tool to update the 34,000+ questions in main.dart, manage user accounts, and monitor AI mentor performance logs.</p>
-                        <a href="#" class="btn-link">Learn More →</a>
-                    </div>
+                    <div class="project-image"><div class="placeholder-img">🛠️</div></div>
+                    <h3>Admin Dashboard</h3>
+                    <p>A centralized management tool to update 34,000+ questions, manage user accounts, and monitor AI logs.</p>
+                    <a href="#" class="btn-link">Learn More →</a>
                 </div>
                 <div class="project-card">
-                    <div class="project-image">
-                        <div class="placeholder-img">📈 Student Analytics</div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Performance Tracker</h3>
-                        <p>A web-based dashboard where students can view their detailed quiz history, coin balance, and accuracy trends across different math topics.</p>
-                        <a href="#" class="btn-link">Visit Portal →</a>
-                    </div>
+                    <div class="project-image"><div class="placeholder-img">📈</div></div>
+                    <h3>Student Analytics</h3>
+                    <p>Web-based dashboard for students to view quiz history, coin balance, and accuracy trends.</p>
+                    <a href="#" class="btn-link">Visit Portal →</a>
                 </div>
                 <div class="project-card">
-                    <div class="project-image">
-                        <div class="placeholder-img">📚 Formula Library</div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Math Resource Hub</h3>
-                        <p>A public repository of mathematical formulas, theorem proofs, and PDF study guides that syncs directly with the mobile app's tutorial section.</p>
-                        <a href="#" class="btn-link">Explore Hub →</a>
-                    </div>
+                    <div class="project-image"><div class="placeholder-img">📚</div></div>
+                    <h3>Formula Library</h3>
+                    <p>Public repository of mathematical formulas and PDF study guides synced with the mobile app.</p>
+                    <a href="#" class="btn-link">Explore Hub →</a>
                 </div>
             </div>
         </div>
@@ -194,62 +176,18 @@
                 <div class="feature-card">
                     <div class="feature-icon">💻</div>
                     <h3>Web Development</h3>
-                    <p>Custom websites and web applications built with modern technologies, responsive design, and optimal performance.</p>
+                    <p>Custom sites and apps built with modern tech and responsive design.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🤖</div>
                     <h3>AI Integration</h3>
-                    <p>Seamlessly integrate AI capabilities into your existing systems or build new AI-powered solutions.</p>
+                    <p>Integrate AI capabilities or build new AI-powered solutions.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
                     <h3>Mobile Apps</h3>
-                    <p>Native and cross-platform mobile applications for iOS and Android with intuitive user experiences.</p>
+                    <p>Native and cross-platform apps for iOS and Android.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>Custom Software</h3>
-                    <p>Tailored software solutions designed to meet your specific business requirements and workflows.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">☁️</div>
-                    <h3>Cloud Solutions</h3>
-                    <p>Scalable cloud infrastructure, deployment, and management services for modern businesses.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Cybersecurity</h3>
-                    <p>Comprehensive security audits, implementation of best practices, and protection against digital threats.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack Section -->
-    <section class="tech-stack">
-        <div class="container">
-            <div class="tech-track">
-                <span>Flutter</span>
-                <span>Dart</span>
-                <span>Firebase</span>
-                <span>Google Cloud AI</span>
-                <span>Python</span>
-                <span>Node.js</span>
-                <span>React</span>
-                <span>TensorFlow</span>
-                <span>AWS</span>
-                <span>Docker</span>
-                <!-- Duplicate for seamless scroll -->
-                <span>Flutter</span>
-                <span>Dart</span>
-                <span>Firebase</span>
-                <span>Google Cloud AI</span>
-                <span>Python</span>
-                <span>Node.js</span>
-                <span>React</span>
-                <span>TensorFlow</span>
-                <span>AWS</span>
-                <span>Docker</span>
             </div>
         </div>
     </section>
@@ -260,38 +198,13 @@
             <h2>About Santosh TechWorks</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Santosh TechWorks is a leading innovation hub specializing in high-performance digital solutions. From AI-integrated mobile platforms like <strong>Quant-Elite</strong> to enterprise-grade web architectures, we bridge the gap between complex engineering and intuitive user experiences.</p>
-                    <p>Quant-Elite is powered by <strong>Google Cloud infrastructure</strong> for real-time matchmaking and AI processing, with subscriptions managed via <strong>RevenueCat</strong> for a seamless freemium experience.</p>
+                    <p>Santosh TechWorks is a leading innovation hub specializing in high-performance digital solutions. From AI-integrated mobile platforms to enterprise-grade web architectures, we bridge the gap between engineering and user experience.</p>
+                    <p>Quant-Elite is powered by <strong>Google Cloud infrastructure</strong> for real-time matchmaking and AI processing, with subscriptions managed via <strong>RevenueCat</strong>.</p>
                 </div>
                 <div class="developer-section">
                     <h3>The Visionary</h3>
-                    <p><strong>Santosh</strong></p>
-                    <p>A Full-Stack Architect with a passion for AI-driven education. Santosh leads the technical direction, ensuring every line of code contributes to a faster, smarter, and more accessible digital future. Our apps are distributed on the <strong>Indus Appstore</strong> and <strong>Uptodown</strong>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>What is Quant-Elite?</h3>
-                    <p>Quant-Elite is a comprehensive math and aptitude learning platform featuring the Ganitacharya AI Mentor for personalized tutoring.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How does the AI Mentor work?</h3>
-                    <p>You can ask doubts using voice, text, or by uploading an image of a problem. Ganitacharya provides step-by-step guidance and conversational feedback.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>What is Quiz Clash?</h3>
-                    <p>It's our real-time multiplayer arena where you can challenge friends or random players in 2-4 player battles. We use smart bots if no live opponents are available.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Is there a certificate?</h3>
-                    <p>Yes! You can earn and download dynamic Mastery Certificates (Gold, Silver, Bronze) based on your performance analytics.</p>
+                    <strong>Santosh</strong>
+                    <p>A Full-Stack Architect with a passion for AI-driven education. Santosh ensures every line of code contributes to a faster, smarter digital future. Our apps are officially distributed on the <strong>Indus Appstore</strong>.</p>
                 </div>
             </div>
         </div>
@@ -303,14 +216,14 @@
             <h2>What Our Users Say</h2>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
-                    <p>"Quant-Elite changed how I prepare for exams. The AI Mentor 'Siddhant' explained complex probability concepts in plain English that I could finally understand!"</p>
+                    <p>"Quant-Elite changed how I prepare. The AI Mentor 'Siddhant' explained complex concepts in plain English that I could finally understand!"</p>
                     <div class="user-info">
                         <strong>Arjun Mehta</strong>
                         <span>GATE 2025 Aspirant</span>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p>"The coin-based system kept me motivated every single day. I've solved over 500 questions and my speed has increased by 40%."</p>
+                    <p>"The coin-based system kept me motivated. I've solved over 500 questions and my speed has increased by 40%."</p>
                     <div class="user-info">
                         <strong>Sarah Johnson</strong>
                         <span>CAT Top Scorer</span>
@@ -320,36 +233,21 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>Stay Ahead in Tech</h2>
-                <p>Get the latest updates on our apps, new tutorials, and AI research delivered to your inbox.</p>
-                <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-                <p id="newsletterMessage"></p>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <h2>Get In Touch</h2>
             <form class="contact-form" onsubmit="handleFormSubmit(event)">
-                <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <input type="text" placeholder="Your Name" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main);">
                 </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Your Email" required>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <input type="email" placeholder="Your Email" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main);">
                 </div>
-                <div class="form-group">
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <textarea placeholder="Your Message" rows="5" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main);"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
             </form>
             <p class="form-message" id="formMessage"></p>
         </div>
@@ -371,42 +269,25 @@
     <div id="chatbot-container" class="chatbot-container">
         <div id="chatbot-window" class="chatbot-window">
             <div class="chatbot-header">
-                <div class="bot-info">
-                    <span class="bot-status"></span>
-                    <strong>Siddhant (AI Manager)</strong>
-                </div>
-                <button onclick="toggleChatbot()" class="close-chat">&times;</button>
+                <strong>Siddhant (AI Manager)</strong>
+                <button onclick="toggleChatbot()" style="background: none; border: none; color: inherit; cursor: pointer; font-size: 1.5rem;">&times;</button>
             </div>
             <div id="chat-messages" class="chat-messages">
                 <div class="message bot-msg">
                     <strong>नमस्ते! मैं सिद्धांत हूँ।</strong> 🙏<br>
-                    संतोष टेकवर्क्स में आपका स्वागत है। मैं एक AI मैनेजर हूँ और आपकी सहायता के लिए तैयार हूँ।<br><br>
-                    <strong>Hello! I'm Siddhant.</strong> 🙏<br>
-                    Welcome to Santosh TechWorks. Need help with <strong>Quant-Elite</strong> or its <strong>Ganitacharya AI Mentor</strong>? I'm here to guide you.<br><br>
-                    <em>आप नीचे दिए गए विकल्पों में से चुन सकते हैं या अपना प्रश्न लिख सकते हैं।</em><br>
-                    <em>You can choose from the options below or type your query.</em>
+                    Welcome to Santosh TechWorks. Need help with Quant-Elite?
                 </div>
             </div>
-            <!-- Prebuilt Suggestions -->
-            <div class="chat-suggestions" id="chat-suggestions">
-                <button onclick="sendSuggestedMessage('About Quant-Elite')">🚀 Quant-Elite Features</button>
-                <button onclick="sendSuggestedMessage('How to Download')">📥 Install Beta</button>
-                <button onclick="sendSuggestedMessage('Quiz Clash')">⚔️ Quiz Clash Arena</button>
-                <button onclick="sendSuggestedMessage('AI Mentor')">🤖 Meet Ganitacharya</button>
-                <button onclick="sendSuggestedMessage('Certificates')">🎓 Mastery Certificates</button>
-            </div>
             <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Type a message... / संदेश लिखें..." onkeypress="handleChatKey(event)">
-                <button onclick="sendChatMessage()">➤</button>
+                <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatKey(event)">
+                <button onclick="sendChatMessage()" class="btn btn-primary" style="padding: 0.5rem 1rem;">➤</button>
             </div>
         </div>
         <button id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()">
-            <span class="chat-icon">💬</span>
-            <span class="chat-text">Chat with Siddhant</span>
+            <span>💬</span> Chat with Siddhant
         </button>
     </div>
 
-    <script src="script.js?v=1.1"></script>
-    <button id="backToTop" onclick="scrollToTop()">↑</button>
+    <script src="script.js"></script>
 </body>
 </html>
