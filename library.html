@@ -262,9 +262,14 @@
                 <div class="formula-card">
                     <h4>Cubic Polynomials & Trinomial Multi-Variables</h4>
                     <div class="math-block">\[ (x + y + z)^2 = x^2 + y^2 + z^2 + 2(xy + yz + zx) \]
-                        \[ (x - y)^3 = x^3 - y^3 - 3xy(x - y) \]</div>
+                        \[ (x \pm y)^3 = x^3 \pm y^3 \pm 3xy(x \pm y) \]</div>
                     <p>Conditional trinomial constraint factoring logic rule:</p>
                     <div class="math-block">\[ \text{If } a + b + c = 0 \implies a^3 + b^3 + c^3 = 3abc \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Sophie Germain Identity</h4>
+                    <p>Used to quickly factorize specific 4th-degree polynomials:</p>
+                    <div class="math-block">\[ x^4 + 4y^4 = (x^2 - 2xy + 2y^2)(x^2 + 2xy + 2y^2) \]</div>
                 </div>
                 <div class="formula-card">
                     <h4>Quadratic Graph Vertex Tracking Layout</h4>
@@ -276,6 +281,13 @@
                         \[ \text{Root Dispersion Identity: } (\alpha - \beta)^2 = (\alpha + \beta)^2 - 4\alpha\beta \]</div>
                 </div>
                 <div class="formula-card">
+                    <h4>Absolute Value Inequalities (Boundaries)</h4>
+                    <p>For Greater-Than (Disjoint Outside regions):</p>
+                    <div class="math-block">\[ |x| \ge a \implies x \ge a \quad \text{OR} \quad x \le -a \]</div>
+                    <p>For Less-Than (Sandwich Inside region):</p>
+                    <div class="math-block">\[ |x| \le a \implies -a \le x \le a \]</div>
+                </div>
+                <div class="formula-card">
                     <h4>Multi-Variable Group Polynomial Factoring Sorting</h4>
                     <div class="math-block">\[ x^3 + x^2 + x + 1 = x^2(x + 1) + 1(x + 1) = (x^2 + 1)(x + 1) \]</div>
                 </div>
@@ -283,7 +295,7 @@
         </div>
 
         <div class="topic-group">
-            <h3 class="topic-title">Logarithms, Surds & Exponents Laws</h3>
+            <h3 class="topic-title">Logarithms, Surds, Complex Numbers & Exponents</h3>
             <div class="formula-grid">
                 <div class="formula-card">
                     <h4>Logarithm Base Transmutations</h4>
@@ -297,6 +309,11 @@
                     <p><b>Positive Strings Profile (\(x > 1\)):</b> \( \text{Characteristic Value} = \text{Total Digits} - 1 \)</p>
                     <p><b>Sub-Unit Fractions Profile (\(x < 1\)):</b> \( \text{Characteristic Value} = -1 - \text{Leading Zero Count} \)</p>
                 </div>
+                <div class="formula-card">
+                    <h4>Complex Numbers (Powers of 'i')</h4>
+                    <p>Tracking the repeating modulo-4 cyclic properties of imaginary numbers:</p>
+                    <div class="math-block">\[ i^2 = -1, \quad i^3 = -i, \quad i^4 = 1 \]</div>
+                </div>
             </div>
         </div>
 
@@ -304,9 +321,13 @@
             <h3 class="topic-title">Set Theory & Advanced Combinatorics</h3>
             <div class="formula-grid">
                 <div class="formula-card">
-                    <h4>Set Cardinality Partition Structures</h4>
-                    <div class="math-block">\[ n(A \cup B) = n(A - B) + n(B - A) + n(A \cap B) \]
-                        \[ n(A \cup B) = n(A) + n(B) - n(A \cap B) \]</div>
+                    <h4>Two-Set Cardinality Partition Structures</h4>
+                    <div class="math-block">\[ n(A \cup B) = n(A) + n(B) - n(A \cap B) \]
+                        \[ n(A \cup B) = n(A - B) + n(B - A) + n(A \cap B) \]</div>
+                </div>
+                <div class="formula-card">
+                    <h4>Three-Set (3-Circle) Union Formula</h4>
+                    <div class="math-block">\[ |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |C \cap A| + |A \cap B \cap C| \]</div>
                 </div>
                 <div class="formula-card">
                     <h4>Stars & Bars Multi-Set Distribution Formula</h4>
@@ -338,7 +359,7 @@
                 </div>
                 <div class="formula-card">
                     <h4>Fibonacci Series Summation Properties</h4>
-                    <div class="math-block">\[ \sum_{k=1}^{n} F_k = F_{n+2} - 1 \]</div>
+                    <div class="math-block">\[ F_n = F_{n-1} + F_{n-2} \quad \text{and} \quad \sum_{k=1}^{n} F_k = F_{n+2} - 1 \]</div>
                 </div>
             </div>
         </div>
@@ -373,6 +394,11 @@
                     <p><b>Central Angle Arc Ratio:</b> \[ \angle \text{Center Position} = 2 \times \angle \text{Circumference Track} \]</p>
                     <p><b>Cyclic Quadrilateral Opposite Interior Angles Theorem:</b> \[ \angle A + \angle C = 180^\circ \text{ and } \angle B + \angle D = 180^\circ \]</p>
                 </div>
+                <div class="formula-card">
+                    <h4>Inverse Trigonometric Conversions</h4>
+                    <p>Converting inverse Sine to inverse Tangent space mapping:</p>
+                    <div class="math-block">\[ \sin^{-1}(x) = \tan^{-1}\left(\frac{x}{\sqrt{1-x^2}}\right) \]</div>
+                </div>
             </div>
         </div>
 
@@ -394,6 +420,7 @@
                     <p><b>Arc Segment Path Length:</b> \[ L = \frac{\theta}{360^\circ} \times 2\pi r \]</p>
                     <p><b>Semicircle Total Perimeter:</b> \[ P = \pi r + 2r \]</p>
                     <p><b>Regular Polygon Interior Angle Layout:</b> \[ \text{Angle} = 180^\circ - \frac{360^\circ}{n} \]</p>
+                    <p><b>Polygon Diagonals Count:</b> \[ \text{Diagonals} = \frac{n(n-3)}{2} \]</p>
                 </div>
             </div>
         </div>
@@ -469,7 +496,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p>&copy; 2026 Santosh TechWorks. Formula Library v3.0 | <a href="index.html" style="color: white;">Main Site</a></p>
+        <p>&copy; 2026 Santosh TechWorks. Formula Library v3.1 | <a href="index.html" style="color: white;">Main Site</a></p>
     </div>
 </footer>
 
