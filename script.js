@@ -64,7 +64,7 @@ function handleFormSubmit(event) {
     // Simulate success
     setTimeout(() => {
         const msg = document.getElementById('formMessage');
-        msg.textContent = 'Message sent successfully! We will get back to you soon.';
+        msg.textContent = 'Message sent successfully! I will get back to you soon.';
         msg.style.color = '#10b981';
         event.target.reset();
         btn.textContent = originalText;

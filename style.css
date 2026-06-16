@@ -340,7 +340,21 @@ h2 {
     flex-wrap: wrap;
 }
 
-.store-btn img { height: 40px; }
+.store-btn img {
+    height: 40px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    border-radius: 8px;
+}
+
+.store-btn:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+[data-theme="dark"] .store-btn img {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+}
 
 .app-preview img {
     width: 100%;
