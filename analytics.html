@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Firebase SDKs -->
+    <!-- Firebase SDKs (v8 compat) -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
@@ -28,6 +28,7 @@
             border: 1px solid var(--border);
             min-height: 400px;
             box-shadow: var(--shadow);
+            position: relative;
         }
         .user-header {
             display: flex;
@@ -87,6 +88,13 @@
         }
         .logout-btn:hover { color: #ef4444; border-color: #ef4444; }
 
+        .no-data-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(var(--bg-card-rgb), 0.8);
+            border-radius: 24px; z-index: 10; font-weight: 600; color: var(--text-muted);
+        }
+
         @media (max-width: 600px) {
             .user-stats { gap: 1rem; }
             .user-header { flex-direction: column; text-align: center; }
@@ -111,6 +119,7 @@
         <div id="loading-view">
             <div class="loading-spinner"></div>
             <p>Syncing with Google Cloud...</p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;" id="loading-timeout-msg" class="hidden">Taking longer than expected? Try signing in again below.</p>
         </div>
         <div id="login-view" class="auth-card hidden">
             <h1>Welcome Back</h1>
@@ -143,35 +152,38 @@
         <h2>Your Performance Insights</h2>
 
         <div class="analytics-grid">
-            <div class="chart-container">
+            <div class="chart-container" id="container-topicChart">
                 <h3>Accuracy by Topic (%)</h3>
                 <canvas id="topicChart"></canvas>
+                <div class="no-data-overlay hidden" id="no-data-topic">No data yet. Take a quiz!</div>
             </div>
-            <div class="chart-container">
+            <div class="chart-container" id="container-activityChart">
                 <h3>Quiz Activity (Last 7 Sessions)</h3>
                 <canvas id="activityChart"></canvas>
+                <div class="no-data-overlay hidden" id="no-data-activity">No data yet. Take a quiz!</div>
             </div>
         </div>
 
         <div class="analytics-grid">
-            <div class="chart-container" style="grid-column: 1 / -1;">
+            <div class="chart-container" style="grid-column: 1 / -1;" id="container-radarChart">
                 <h3>Global Mastery Radar</h3>
-                <div style="max-width: 500px; margin: 0 auto;">
+                <div style="max-width: 500px; margin: 0 auto; position: relative;">
                     <canvas id="radarChart"></canvas>
                 </div>
+                <div class="no-data-overlay hidden" id="no-data-radar">Complete more quizzes to unlock radar.</div>
             </div>
         </div>
     </main>
 
     <script>
-        // Firebase Configuration (from your google-services.json)
+        // Updated Firebase Configuration (Corrected to match Quant-Elite App)
         const firebaseConfig = {
-            apiKey: "AIzaSyCUuodgZJOEqrT6eJrUWtFqxZWdojOQmU8",
-            authDomain: "quant-elite-ddfb4.firebaseapp.com",
-            projectId: "quant-elite-ddfb4",
-            storageBucket: "quant-elite-ddfb4.firebasestorage.app",
-            messagingSenderId: "619510555417",
-            appId: "1:619510555417:web:c07edf4b6b3c9677bce49" // Placeholder web app id
+          apiKey: 'AIzaSyDTRjBCfpMhTMC2Nwrn-hZaEd-5ZJdnDfo',
+          authDomain: 'quant-elite.firebaseapp.com',
+          projectId: 'quant-elite',
+          storageBucket: 'quant-elite.firebasestorage.app',
+          messagingSenderId: '871695215047',
+          appId: '1:871695215047:web:5b3fa92aebe639346a51e2'
         };
 
         // Initialize Firebase
@@ -181,8 +193,17 @@
 
         let topicChart, activityChart, radarChart;
 
+        // Force show login if sync takes too long (10s)
+        const loadTimeout = setTimeout(() => {
+            if (!auth.currentUser) {
+                document.getElementById('loading-timeout-msg').classList.remove('hidden');
+                document.getElementById('login-view').classList.remove('hidden');
+            }
+        }, 10000);
+
         // Auth State Listener
         auth.onAuthStateChanged(user => {
+            clearTimeout(loadTimeout);
             if (user) {
                 console.log("User logged in:", user.uid);
                 document.getElementById('auth-overlay').classList.add('hidden');
@@ -202,7 +223,7 @@
             document.getElementById('user-display-name').textContent = user.displayName || "Explorer";
             document.getElementById('user-initial').textContent = (user.displayName || "E").charAt(0).toUpperCase();
 
-            // 1. Fetch User Stats
+            // 1. Fetch User Stats (Real-time)
             db.collection('users').doc(user.uid).onSnapshot(doc => {
                 if (doc.exists) {
                     const data = doc.data();
@@ -213,39 +234,68 @@
 
                     // Simple Rank Logic
                     let rank = "Bronze";
-                    if (data.coins > 1000) rank = "Silver";
-                    if (data.coins > 5000) rank = "Gold";
-                    if (data.coins > 15000) rank = "Platinum";
+                    const coins = data.coins || 0;
+                    if (coins > 1000) rank = "Silver";
+                    if (coins > 5000) rank = "Gold";
+                    if (coins > 15000) rank = "Platinum";
                     document.getElementById('stat-rank').innerHTML = `Rank: <b>${rank}</b>`;
+                } else {
+                    document.getElementById('stat-coins').innerHTML = `Coins: <b>0</b>`;
+                    document.getElementById('stat-accuracy').innerHTML = `Accuracy: <b>0%</b>`;
+                    document.getElementById('stat-rank').innerHTML = `Rank: <b>Bronze</b>`;
                 }
+            }, err => {
+                console.error("Firestore stats error:", err);
+                document.getElementById('stat-rank').innerHTML = `Rank: <b style="color:red">Error</b>`;
             });
 
-            // 2. Fetch Quiz History for Charts
+            // 2. Fetch Quiz History for Charts (Ordered by timestamp or date)
             db.collection('users').doc(user.uid).collection('history')
-              .orderBy('date', 'desc').limit(20).onSnapshot(snapshot => {
-                const history = snapshot.docs.map(doc => doc.data());
-                updateCharts(history);
+              .orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+                let history = snapshot.docs.map(doc => doc.data());
+
+                // Fallback to ordering by 'date' string if 'timestamp' isn't yet in documents
+                if (history.length === 0) {
+                   db.collection('users').doc(user.uid).collection('history')
+                     .orderBy('date', 'desc').limit(20).get().then(snap => {
+                        updateCharts(snap.docs.map(d => d.data()));
+                     });
+                } else {
+                   updateCharts(history.slice(0, 20));
+                }
+            }, err => {
+                console.error("History fetch error:", err);
+                // Try fallback immediately on error (permission issues with orderBy)
+                db.collection('users').doc(user.uid).collection('history').limit(20).get().then(snap => {
+                    updateCharts(snap.docs.map(d => d.data()));
+                });
             });
         }
 
         function updateCharts(history) {
-            if (history.length === 0) return;
+            const noHistory = !history || history.length === 0;
+
+            document.getElementById('no-data-topic').classList.toggle('hidden', !noHistory);
+            document.getElementById('no-data-activity').classList.toggle('hidden', !noHistory);
+            document.getElementById('no-data-radar').classList.toggle('hidden', history.length >= 3);
+
+            if (noHistory) return;
 
             // --- Topic Accuracy Logic ---
             const topics = {};
             history.forEach(res => {
                 if (!topics[res.topic]) topics[res.topic] = { total: 0, score: 0 };
-                topics[res.topic].total += res.totalQuestions || 1;
-                topics[res.topic].score += res.score || 0;
+                topics[res.topic].total += (res.totalQuestions || 1);
+                topics[res.topic].score += (res.score || 0);
             });
 
             const topicLabels = Object.keys(topics);
             const topicData = topicLabels.map(t => (topics[t].score / topics[t].total) * 100);
 
             // --- Activity Logic (Last 7 Sessions) ---
-            const last7 = history.slice(0, 7).reverse();
+            const last7 = [...history].slice(0, 7).reverse();
             const activityLabels = last7.map(res => {
-                const d = new Date(res.date);
+                const d = res.timestamp ? res.timestamp.toDate() : new Date(res.date);
                 return `${d.getMonth()+1}/${d.getDate()}`;
             });
             const activityData = last7.map(res => res.score);
@@ -307,7 +357,6 @@
             const ctx = document.getElementById('radarChart').getContext('2d');
             if (radarChart) radarChart.destroy();
 
-            // Map accuracy to radar traits
             const avgAcc = topicData.reduce((a, b) => a + b, 0) / (topicData.length || 1);
 
             radarChart = new Chart(ctx, {
@@ -317,11 +366,11 @@
                     datasets: [{
                         label: 'Mastery Level',
                         data: [
-                            80 + (avgAcc/10), // Logic
-                            70 + (topicData.length * 2), // Speed (simulated)
-                            avgAcc, // Accuracy
-                            75 + (topicData.length), // Consistency
-                            60 + (avgAcc/5) // Depth
+                            70 + (avgAcc/15),
+                            65 + (topicData.length * 1.5),
+                            avgAcc,
+                            75 + (topicData.length * 0.5),
+                            60 + (avgAcc/6)
                         ],
                         borderColor: '#10b981',
                         backgroundColor: 'rgba(16, 185, 129, 0.2)'
@@ -334,7 +383,6 @@
             });
         }
 
-        // Auth Actions
         function loginWithGoogle() {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider).catch(error => {
@@ -352,7 +400,7 @@
             auth.signOut();
         }
 
-        // Theme Toggle (Re-sync with style.css logic)
+        // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const htmlElement = document.documentElement;
@@ -365,7 +413,6 @@
             themeIcon.textContent = newTheme === 'light' ? '🌙' : '☀️';
         });
 
-        // Initialize theme on load
         const savedTheme = localStorage.getItem('theme') || 'light';
         htmlElement.setAttribute('data-theme', savedTheme);
         themeIcon.textContent = savedTheme === 'light' ? '🌙' : '☀️';
