@@ -7,39 +7,53 @@
     <title>Privacy Policy - Quant-Elite</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
         .privacy-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
             line-height: 1.8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
         }
         .privacy-container h1 {
             color: var(--primary-color);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-size: 2.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
         }
         .privacy-container h2 {
             color: var(--primary-color);
             margin-top: 40px;
             margin-bottom: 15px;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            background: #eff6ff;
+            padding: 10px 15px;
+            border-radius: 8px;
         }
         .privacy-container h3 {
             color: var(--secondary-color);
             margin-top: 25px;
             margin-bottom: 10px;
+            font-size: 1.25rem;
         }
         .privacy-container p {
-            color: var(--text-light);
             margin-bottom: 15px;
         }
         .privacy-container ul, .privacy-container ol {
-            color: var(--text-light);
-            margin-left: 20px;
-            margin-bottom: 15px;
+            margin-left: 25px;
+            margin-bottom: 20px;
         }
         .privacy-container li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .back-link {
             display: inline-block;
@@ -49,117 +63,146 @@
             font-weight: 600;
         }
         .back-link:hover {
-            color: var(--secondary-color);
+            text-decoration: underline;
         }
         .last-updated {
             color: var(--text-light);
             font-style: italic;
             margin-bottom: 30px;
+            display: block;
+        }
+        .policy-box {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            margin-bottom: 30px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">Quant-Elite</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <div class="privacy-container">
         <a href="index.html" class="back-link">← Back to Home</a>
         
         <h1>Privacy Policy</h1>
-        <p class="last-updated">Last Updated: June 16, 2026</p>
+        <span class="last-updated">Last Updated: June 20, 2026</span>
 
-        <h2>1. Introduction</h2>
-        <p>
-            Welcome to Quant-Elite. I am Santosh Choubey, the solo developer of this application. I am committed to protecting your privacy and ensuring you have a safe experience while mastering mathematics. This Privacy Policy explains how I collect, use, and safeguard your information when you use my mobile application and website.
-        </p>
-        <p>
-            By using Quant-Elite, you agree to the collection and use of information in accordance with this policy.
-        </p>
+        <div class="policy-box">
+            <h2>1. Introduction</h2>
+            <p>
+                Welcome to <strong>Quant-Elite</strong>. I am Santosh Choubey, the solo developer of this application. I am committed to providing a high-quality educational experience while respecting your privacy. This policy outlines how I handle data, payments, and the virtual economy within the app to ensure compliance with the Google Play Store developer policies.
+            </p>
+            <p>
+                By using Quant-Elite, you consent to the practices described in this policy.
+            </p>
+        </div>
 
         <h2>2. Information I Collect</h2>
+
         <h3>2.1 Personal Information</h3>
         <ul>
-            <li><strong>Account Data:</strong> When you sign in via Google or Email, I use Firebase Authentication to manage your identity. I collect your name and email address to personalize your experience.</li>
-            <li><strong>User Profile:</strong> I store your quiz progress, scores, and certificates to help you track your learning journey.</li>
+            <li><strong>Authentication Data:</strong> I use Firebase Authentication. If you sign in via Google or Email, I collect your name and email address to create and secure your account.</li>
+            <li><strong>Learning Progress:</strong> I store your quiz scores, tutorial completion status, and certificates in Firebase Cloud Firestore to sync your progress across devices.</li>
         </ul>
 
-        <h3>2.2 Media and Sensors</h3>
+        <h3>2.2 Device and Sensor Permissions</h3>
+        <p>To provide specific features, the App requests access to:</p>
         <ul>
-            <li><strong>Microphone:</strong> With your permission, I access the microphone to enable the "Live Mentor" voice interaction feature. Your voice is converted to text locally or via Google's Speech-to-Text services to interact with the AI.</li>
-            <li><strong>Camera:</strong> I access your camera only when you choose to take a photo of a math problem to upload it for AI explanation.</li>
-            <li><strong>Photo Library:</strong> When you pick an image from your gallery, I use the system Photo Picker. I do not have broad access to your entire media library.</li>
+            <li><strong>Microphone:</strong> Used only for the "Live Mentor" voice interaction feature. Audio is processed to text; I do not record or store raw audio files on my servers.</li>
+            <li><strong>Camera & Gallery:</strong> Used only when you choose to upload a math problem for AI analysis. I use the system-standard photo picker.</li>
+            <li><strong>Storage:</strong> To cache learning materials and certificates locally for offline access.</li>
         </ul>
 
         <h3>2.3 Automatically Collected Data</h3>
         <ul>
-            <li><strong>Device Info:</strong> I collect basic device information (model, OS version) to ensure app stability and debug crashes.</li>
-            <li><strong>Usage Data:</strong> I track which topics you study and your quiz performance to provide analytics and improvement suggestions.</li>
+            <li><strong>Device Information:</strong> Model, OS version, and unique device identifiers for analytics and crash reporting (via Firebase Crashlytics).</li>
+            <li><strong>Usage Metrics:</strong> Time spent on modules, quiz accuracy, and AI interaction frequency to improve the mentor's responsiveness.</li>
         </ul>
 
-        <h2>3. How I Use Your Information</h2>
-        <p>I use the information to:</p>
+        <h2>3. Virtual Currency (Coins) Logic</h2>
+        <div class="policy-box">
+            <p>Quant-Elite features a "Coin Economy" to incentivize learning and manage premium resources.</p>
+            <h3>3.1 Earning Coins</h3>
+            <ul>
+                <li><strong>Onboarding:</strong> New users receive a one-time welcome bonus (e.g., 100 coins).</li>
+                <li><strong>Learning:</strong> Coins are awarded for completing tutorials and passing quizzes correctly.</li>
+                <li><strong>Purchases:</strong> Users may purchase coin packs via Google Play Billing.</li>
+            </ul>
+            <h3>3.2 Spending Coins</h3>
+            <ul>
+                <li>Coins are used to unlock specific advanced modules, start mock tests, or request extra AI prompts beyond the daily free limit.</li>
+            </ul>
+            <h3>3.3 Legal Status</h3>
+            <p>
+                <span class="highlight">Coins are "Virtual Goods."</span> They have no real-world monetary value, cannot be redeemed for cash, and cannot be transferred to other users. All coin balances are associated with your account and stored securely in Cloud Firestore.
+            </p>
+        </div>
+
+        <h2>4. Payments and Subscriptions</h2>
+        <p>
+            I use <span class="highlight">Google Play Billing</span> for all financial transactions.
+        </p>
         <ul>
-            <li>Provide and maintain the "Ganitacharya AI" mentor service.</li>
-            <li>Sync your progress across devices via Firebase.</li>
-            <li>Generate personalized performance certificates.</li>
-            <li>Show relevant educational advertisements via Google Mobile Ads.</li>
-            <li>Process premium subscriptions via Google Play Billing.</li>
-            <li>Send notifications for practice reminders.</li>
+            <li><strong>Payment Processing:</strong> I do not collect or store your credit card or bank details. All transactions are handled securely by Google.</li>
+            <li><strong>Subscriptions & Purchases:</strong> Premium features (Ad-free periods, large coin packs) are tied to your Google Play account.</li>
+            <li><strong>Refunds:</strong> Refunds for in-app purchases are subject to Google Play’s refund policy. Users can request refunds through the Google Play Console or by contacting me.</li>
         </ul>
 
-        <h2>4. Third-Party Services</h2>
-        <p>
-            To provide a feature-rich experience, I use the following third-party services which have their own privacy policies:
-        </p>
+        <h2>5. Third-Party Services</h2>
+        <p>I integrate the following services to enhance the App:</p>
         <ul>
-            <li><strong>Google Firebase:</strong> For authentication, database storage, and crash reporting.</li>
-            <li><strong>Google Gemini AI:</strong> To power the "Ganitacharya AI" math mentor. When you send a text or image query, it is processed by Google's AI models.</li>
-            <li><strong>Google Mobile Ads (AdMob):</strong> To display advertisements in the free version of the app.</li>
-            <li><strong>Google Play Services:</strong> For core app functionality and in-app purchases.</li>
+            <li><strong>Google Firebase:</strong> For user authentication, cloud database, and crash reporting.</li>
+            <li><strong>Google Gemini AI:</strong> Powers the "Ganitacharya AI" mentor. Text and image queries are sent to Google's servers for processing.</li>
+            <li><strong>Google Mobile Ads (AdMob):</strong> Used to display advertisements in the free version.</li>
+            <li><strong>Google Play Services:</strong> Required for core app functionality and billing.</li>
         </ul>
 
-        <h2>5. Data Storage and Security</h2>
+        <h2>6. Advertising and Personalization</h2>
         <p>
-            Your chat history with the AI mentor and images you upload are stored locally on your device for your convenience. I also use Firebase (Cloud Firestore) to securely store your scores and profile data so you don't lose them if you change devices. I implement industry-standard security measures, but please remember that no method of electronic storage is 100% secure.
+            I use AdMob to serve ads. AdMob may use device identifiers to show personalized ads. You can manage your ad preferences or opt-out of personalized advertising in your Android device settings (Settings > Google > Ads).
         </p>
 
-        <h2>6. Children's Privacy</h2>
+        <h2>7. Data Security and Deletion</h2>
+        <h3>7.1 Security</h3>
         <p>
-            I do not knowingly collect personally identifiable information from children under 13. If you are a parent and you are aware that your child has provided me with personal data, please contact me so that I can take necessary actions.
+            Your data is encrypted in transit and at rest using Firebase's security protocols.
+        </p>
+        <h3>7.2 Data Deletion</h3>
+        <p>
+            You have the right to delete your account and all associated data (progress, coins, scores).
+            To request deletion:
+        </p>
+        <ol>
+            <li>Go to <strong>Settings</strong> within the App and select <strong>Delete Account</strong>.</li>
+            <li>Alternatively, email me at <span class="highlight">theuniquedawg29@gmail.com</span> with the subject "Data Deletion Request" from your registered email address.</li>
+        </ol>
+
+        <h2>8. Children's Privacy</h2>
+        <p>
+            Quant-Elite is designed for students. I do not intentionally collect personal data from children under 13 without parental consent. If I discover that a child under 13 has provided personal information, I will delete it immediately from my servers.
         </p>
 
-        <h2>7. Your Rights</h2>
+        <h2>9. Changes to This Policy</h2>
         <p>
-            You can update your profile name within the app at any time. If you wish to delete your account and all associated data, you can do so through the app settings or by contacting me directly at the email provided below.
+            I may update this policy periodically. Significant changes will be notified via an in-app announcement.
         </p>
 
-        <h2>8. Changes to This Policy</h2>
+        <h2>10. Contact Me</h2>
         <p>
-            I may update my Privacy Policy from time to time. I will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.
-        </p>
-
-        <h2>9. Contact Me</h2>
-        <p>
-            If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me:
+            If you have questions regarding this Privacy Policy, please contact me:
         </p>
         <ul>
-            <li><strong>Email:</strong> theuniquedawg29@gmail.com</li>
             <li><strong>Developer:</strong> Santosh Choubey</li>
+            <li><strong>Email:</strong> theuniquedawg29@gmail.com</li>
         </ul>
 
-        <hr style="margin: 40px 0; border: 1px solid #e2e8f0;">
-        <p style="text-align: center; color: #64748b; font-size: 0.9rem;">
+        <hr style="margin: 40px 0; border: 1px solid var(--border-color);">
+        <p style="text-align: center; color: var(--text-light); font-size: 0.9rem;">
             © 2026 Quant-Elite. All rights reserved. | Developed by Santosh Choubey (Solo Developer)
         </p>
     </div>

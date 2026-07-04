@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Provide feedback for Quant-Elite and Santosh TechWorks. We value your input.">
+    <title>Feedback | Santosh TechWorks</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .feedback-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .feedback-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .feedback-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-main), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feedback-header p {
+            color: var(--text-muted);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.8rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-body);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .feedback-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .feedback-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        @media (max-width: 640px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .feedback-container {
+                margin: 80px 1rem 30px;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Santosh TechWorks</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#apps">Apps</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                        <span id="theme-icon">🌙</span>
+                    </button>
+                </li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav" id="mobile-nav">
+        <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#apps">Apps</a></li>
+            <li><a href="index.html#web-projects">Websites</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+    </div>
+
+    <main class="container">
+        <div class="feedback-container">
+            <div class="feedback-header">
+                <h1>User Feedback</h1>
+                <p>Help us improve Quant-Elite. Your feedback directly shapes the future of our apps.</p>
+            </div>
+
+            <form id="feedback-form" onsubmit="handleFeedbackSubmit(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-type">Feedback Type</label>
+                        <select id="feedback-type" name="feedback-type" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="bug">Report a Bug</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="improvement">Improvement Suggestion</option>
+                            <option value="praise">General Praise</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-version">App Version (If known)</label>
+                        <input type="text" id="app-version" name="app-version" placeholder="e.g. 1.2.0">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="What is your feedback about?" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">Detailed Feedback</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Please describe your experience or suggestion in detail..." required></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Submit Feedback</button>
+            </form>
+
+            <p id="formMessage" style="margin-top: 1.5rem; text-align: center; font-weight: 600;"></p>
+
+            <div class="feedback-footer">
+                <p>Alternatively, you can email us directly at <a href="mailto:theuniquedawg29@gmail.com">theuniquedawg29@gmail.com</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Santosh TechWorks. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Back to Home</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Custom feedback handling using shared script logic or extension
+        function handleFeedbackSubmit(event) {
+            event.preventDefault();
+            const btn = event.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            // Simulate success
+            setTimeout(() => {
+                const msg = document.getElementById('formMessage');
+                msg.textContent = 'Thank you! Your feedback has been received and will be reviewed by Santosh.';
+                msg.style.color = 'var(--secondary)';
+                event.target.reset();
+                btn.textContent = originalText;
+                btn.disabled = false;
+
+                // Scroll to message
+                msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
