@@ -54,24 +54,43 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Form Submission Logic
-function handleFormSubmit(event) {
+async function handleFormSubmit(event) {
     event.preventDefault();
-    const btn = event.target.querySelector('button[type="submit"]');
+    const form = event.target;
+    const btn = form.querySelector('button[type="submit"]');
     const originalText = btn.textContent;
+    const msg = document.getElementById('formMessage');
+
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    // Simulate success
-    setTimeout(() => {
-        const msg = document.getElementById('formMessage');
-        msg.textContent = 'Message sent successfully! I will get back to you soon.';
-        msg.style.color = '#10b981';
-        event.target.reset();
+    const data = new FormData(form);
+
+    try {
+        const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            msg.textContent = 'Message sent successfully! Santosh will receive your email instantly.';
+            msg.style.color = '#10b981';
+            form.reset();
+        } else {
+            msg.textContent = 'Oops! There was a problem sending your message.';
+            msg.style.color = '#ef4444';
+        }
+    } catch (error) {
+        msg.textContent = 'Oops! There was a problem sending your message.';
+        msg.style.color = '#ef4444';
+    } finally {
         btn.textContent = originalText;
         btn.disabled = false;
-
-        setTimeout(() => msg.textContent = '', 5000);
-    }, 1500);
+        setTimeout(() => msg.textContent = '', 6000);
+    }
 }
 
 // Chatbot Logic

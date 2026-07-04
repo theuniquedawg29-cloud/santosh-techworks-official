@@ -256,15 +256,15 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2>Get In Touch</h2>
-            <form class="contact-form" onsubmit="handleFormSubmit(event)">
+            <form class="contact-form" action="https://formspree.io/f/theuniquedawg29@gmail.com" method="POST" id="contact-form">
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <input type="text" placeholder="Your Name" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main);">
+                    <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main);">
                 </div>
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <input type="email" placeholder="Your Email" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main);">
+                    <input type="email" name="_replyto" placeholder="Your Email" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main);">
                 </div>
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <textarea placeholder="Your Message" rows="5" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main);"></textarea>
+                    <textarea name="message" placeholder="Your Message" rows="5" required style="width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main);"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
             </form>

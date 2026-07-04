@@ -127,7 +127,7 @@
                 <p>Help us improve Quant-Elite. Your feedback directly shapes the future of our apps.</p>
             </div>
 
-            <form id="feedback-form" onsubmit="handleFeedbackSubmit(event)">
+            <form id="feedback-form" action="https://formspree.io/f/theuniquedawg29@gmail.com" method="POST">
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="name">Full Name</label>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        <input type="email" id="email" name="_replyto" placeholder="john@example.com" required>
                     </div>
                     <div class="form-group">
                         <label for="feedback-type">Feedback Type</label>
@@ -185,27 +185,53 @@
 
     <script src="script.js"></script>
     <script>
-        // Custom feedback handling using shared script logic or extension
-        function handleFeedbackSubmit(event) {
+        // Custom feedback handling using Formspree AJAX
+        const form = document.getElementById('feedback-form');
+
+        async function handleFeedbackSubmit(event) {
             event.preventDefault();
-            const btn = event.target.querySelector('button[type="submit"]');
+            const btn = form.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
+            const status = document.getElementById('formMessage');
+
             btn.textContent = 'Sending...';
             btn.disabled = true;
 
-            // Simulate success
-            setTimeout(() => {
-                const msg = document.getElementById('formMessage');
-                msg.textContent = 'Thank you! Your feedback has been received and will be reviewed by Santosh.';
-                msg.style.color = 'var(--secondary)';
-                event.target.reset();
+            const data = new FormData(event.target);
+
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.textContent = 'Thank you! Your feedback has been sent instantly to Santosh.';
+                    status.style.color = 'var(--secondary)';
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.textContent = data["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            status.textContent = "Oops! There was a problem submitting your form";
+                        }
+                        status.style.color = "#ef4444";
+                    })
+                }
                 btn.textContent = originalText;
                 btn.disabled = false;
-
-                // Scroll to message
-                msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 1500);
+                status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }).catch(error => {
+                status.textContent = "Oops! There was a problem submitting your form";
+                status.style.color = "#ef4444";
+                btn.textContent = originalText;
+                btn.disabled = false;
+            });
         }
+
+        form.addEventListener("submit", handleFeedbackSubmit);
     </script>
 </body>
 </html>
