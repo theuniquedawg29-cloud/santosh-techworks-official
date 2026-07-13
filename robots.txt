@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://theuniquedawg29-cloud.github.io/santosh-techworks-official/sitemap.xml
