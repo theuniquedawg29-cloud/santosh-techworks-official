@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Doubt Zone | Chat with Ganitacharya AI</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .chat-container { max-width: 700px; margin: 80px auto 20px; height: calc(100vh - 120px); display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; }
+        .chat-header { background: var(--primary); color: white; padding: 20px; display: flex; align-items: center; gap: 15px; }
+        .ai-avatar { width: 45px; height: 45px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 25px; display: flex; flex-direction: column; gap: 15px; background: var(--bg-body); }
+        .msg { max-width: 80%; padding: 12px 18px; border-radius: 18px; line-height: 1.5; font-size: 0.95rem; }
+        .user-msg { align-self: flex-end; background: var(--primary); color: white; border-bottom-right-radius: 4px; }
+        .bot-msg { align-self: flex-start; background: white; color: #1e293b; border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+        .chat-input-area { padding: 20px; background: var(--bg-card); border-top: 1px solid var(--border); display: flex; gap: 10px; }
+        .chat-input { flex: 1; padding: 12px 20px; border-radius: 50px; border: 2px solid var(--border); outline: none; transition: border-color 0.2s; }
+        .chat-input:focus { border-color: var(--primary); }
+        .prompt-counter { font-size: 0.75rem; color: #94a3b8; text-align: center; padding: 10px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Ganitacharya AI</a>
+            <span id="p-count" style="font-weight: 700; color: var(--primary);">Prompts: 0/5</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="ai-avatar">🕉️</div>
+                <div>
+                    <div style="font-weight: 800;">Ganitacharya</div>
+                    <div style="font-size: 0.8rem; opacity: 0.9;">Your 24/7 Math Guru</div>
+                </div>
+            </div>
+
+            <div id="messages" class="chat-messages">
+                <div class="msg bot-msg">
+                    <strong>नमो नमः! I am Ganitacharya.</strong> 🙏<br>
+                    I can help you solve any competitive exam math problem. What is your doubt today?
+                </div>
+            </div>
+
+            <div class="prompt-counter" id="limit-msg">You have 5 complimentary prompts for this web session.</div>
+
+            <div class="chat-input-area">
+                <input type="text" id="user-input" class="chat-input" placeholder="Enter your math doubt here..." onkeypress="handleKey(event)">
+                <button onclick="sendMessage()" id="send-btn" class="btn btn-primary" style="border-radius: 50px; width: 50px; padding: 0;">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="explore-utility.js"></script>
+    <script>
+        // API CONFIGURATION (MANUAL INJECTION)
+        const GEMINI_API_KEY = "YOUR_API_KEY_HERE";
+
+        const input = document.getElementById('user-input');
+        const container = document.getElementById('messages');
+        const pCountDisplay = document.getElementById('p-count');
+
+        let promptCount = parseInt(localStorage.getItem('ganitacharya_prompts') || '0');
+        updatePromptDisplay();
+
+        function handleKey(e) { if (e.key === 'Enter') sendMessage(); }
+
+        async function sendMessage() {
+            const text = input.value.trim();
+            if (!text) return;
+
+            if (!ExploreUtility.checkAIPromptLimit()) return;
+
+            appendMessage('user', text);
+            input.value = '';
+
+            promptCount = ExploreUtility.incrementAIPrompt();
+            updatePromptDisplay();
+
+            // AI Processing
+            const loadingMsg = appendMessage('bot', '<span class="loader">Thinking...</span>');
+
+            try {
+                // If API Key is present, call Gemini. Else, fallback to demo mode.
+                if (GEMINI_API_KEY === "YOUR_API_KEY_HERE") {
+                    setTimeout(() => {
+                        loadingMsg.innerHTML = "I am in Web Preview mode. Please download the <strong>Quant-Elite App</strong> to use my full AI intelligence for solving your specific doubts. I can explain any chapter logic here though!";
+                    }, 1500);
+                } else {
+                    // Placeholder for real Gemini integration logic
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: text }] }] })
+                    });
+                    const data = await response.json();
+                    loadingMsg.innerHTML = data.candidates[0].content.parts[0].text;
+                }
+            } catch (err) {
+                loadingMsg.innerHTML = "I encountered an error. For 100% reliable 24/7 access, please use the Quant-Elite mobile application.";
+            }
+
+            if (promptCount >= 5) {
+                input.disabled = true;
+                document.getElementById('send-btn').disabled = true;
+                document.getElementById('limit-msg').innerHTML = "<span style='color: #ef4444; font-weight: 700;'>Limit Reached!</span> Download the app for unlimited 24/7 AI mentoring.";
+            }
+        }
+
+        function appendMessage(sender, text) {
+            const div = document.createElement('div');
+            div.className = `msg ${sender}-msg`;
+            div.innerHTML = text;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+            return div;
+        }
+
+        function updatePromptDisplay() {
+            pCountDisplay.innerText = `Prompts: ${promptCount}/5`;
+        }
+    </script>
+</body>
+</html>
