@@ -23,7 +23,6 @@
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">Ganitacharya AI</a>
-            <span id="p-count" style="font-weight: 700; color: var(--primary);">Prompts: 0/5</span>
         </div>
     </nav>
 
@@ -44,8 +43,6 @@
                 </div>
             </div>
 
-            <div class="prompt-counter" id="limit-msg">You have 5 complimentary prompts for this web session.</div>
-
             <div class="chat-input-area">
                 <input type="text" id="user-input" class="chat-input" placeholder="Enter your math doubt here..." onkeypress="handleKey(event)">
                 <button onclick="sendMessage()" id="send-btn" class="btn btn-primary" style="border-radius: 50px; width: 50px; padding: 0;">➤</button>
@@ -60,10 +57,8 @@
 
         const input = document.getElementById('user-input');
         const container = document.getElementById('messages');
-        const pCountDisplay = document.getElementById('p-count');
 
         let promptCount = parseInt(localStorage.getItem('ganitacharya_prompts') || '0');
-        updatePromptDisplay();
 
         function handleKey(e) { if (e.key === 'Enter') sendMessage(); }
 
@@ -71,13 +66,10 @@
             const text = input.value.trim();
             if (!text) return;
 
-            if (!ExploreUtility.checkAIPromptLimit()) return;
-
             appendMessage('user', text);
             input.value = '';
 
             promptCount = ExploreUtility.incrementAIPrompt();
-            updatePromptDisplay();
 
             // AI Processing
             const loadingMsg = appendMessage('bot', '<span class="loader">Thinking...</span>');
@@ -101,12 +93,6 @@
             } catch (err) {
                 loadingMsg.innerHTML = "I encountered an error. For 100% reliable 24/7 access, please use the Quant-Elite mobile application.";
             }
-
-            if (promptCount >= 5) {
-                input.disabled = true;
-                document.getElementById('send-btn').disabled = true;
-                document.getElementById('limit-msg').innerHTML = "<span style='color: #ef4444; font-weight: 700;'>Limit Reached!</span> Download the app for unlimited 24/7 AI mentoring.";
-            }
         }
 
         function appendMessage(sender, text) {
@@ -116,10 +102,6 @@
             container.appendChild(div);
             container.scrollTop = container.scrollHeight;
             return div;
-        }
-
-        function updatePromptDisplay() {
-            pCountDisplay.innerText = `Prompts: ${promptCount}/5`;
         }
     </script>
 </body>

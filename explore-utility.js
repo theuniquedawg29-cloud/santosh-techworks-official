@@ -8,25 +8,16 @@ const AI_PROMPT_STORAGE_KEY = 'ganitacharya_prompts';
 const LIMIT_DIALOG_ID = 'unlimited-learning-dialog';
 
 const ExploreUtility = {
-    // Increment exploration count and check limits
+    // Increment exploration count
     trackExploration: function() {
         let count = parseInt(localStorage.getItem(EXPLORATION_STORAGE_KEY) || '0');
         count++;
         localStorage.setItem(EXPLORATION_STORAGE_KEY, count.toString());
-
-        if (count >= 3) {
-            this.showDownloadDialog();
-        }
         return count;
     },
 
     // Specific limit for Ganitacharya AI
     checkAIPromptLimit: function() {
-        let count = parseInt(localStorage.getItem(AI_PROMPT_STORAGE_KEY) || '0');
-        if (count >= 5) {
-            this.showDownloadDialog("AI Mentor Limit Reached!", "Ganitacharya AI is available 24/7 in the app for unlimited doubt solving. Download now to continue your journey!");
-            return false;
-        }
         return true;
     },
 
