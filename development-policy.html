@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Development Policy | Santosh TechWorks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f59e0b;
+            --body: #f8fafc;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --text-soft: #475569;
+            --border: #e2e8f0;
+        }
+        html[data-theme="dark"] {
+            --body: #000000;
+            --surface: #0a0a0a;
+            --text: #f8fafc;
+            --text-soft: #cbd5e1;
+            --border: rgba(148, 163, 184, 0.18);
+        }
+        body {
+            margin: 0; background: var(--body); color: var(--text);
+            font-family: "Plus Jakarta Sans", sans-serif; line-height: 1.7;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container { width: min(calc(100% - 3rem), 850px); margin-inline: auto; padding: 5rem 0; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; font-weight: 800; color: var(--primary); text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .back-link:hover { opacity: 0.8; }
+        .last-updated { font-size: 0.8rem; color: var(--text-soft); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+        h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin: 0 0 2rem; letter-spacing: -0.04em; }
+        h2 { font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text); letter-spacing: -0.02em; }
+        p { margin-bottom: 1.5rem; color: var(--text-soft); font-size: 1.05rem; }
+        ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-soft); display: grid; gap: 0.5rem; }
+        li { font-size: 1.05rem; }
+        .policy-box { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 2rem; margin-top: 4rem; }
+        .policy-box h3 { margin-top: 0; margin-bottom: 1rem; }
+        .policy-box a { color: var(--primary); font-weight: 700; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <div class="last-updated">Effective Date: August 11, 2026</div>
+        <h1>Development & Service Policy</h1>
+
+        <p>This policy outlines the terms, conditions, and professional standards followed by <strong>Santosh TechWorks</strong> for custom software development, automation, and consulting services.</p>
+
+        <h2>1. Scope of Service</h2>
+        <p>I provide rapid-delivery digital solutions including Mobile Apps (Flutter/Dart), Web Platforms (React/Node), Custom Desktop Software, and Task Automation (Python/VBA). All projects are initiated with a fixed "Solution Blueprint" that defines the exact scope.</p>
+
+        <h2>2. Flexible Pricing & Negotiation</h2>
+        <p>At Santosh TechWorks, I prioritize value over rigid pricing structures:</p>
+        <ul>
+            <li><strong>Negotiability:</strong> All rates stated on the portfolio are baseline estimates and are <u>fully negotiable</u>.</li>
+            <li><strong>Complexity Adjustment:</strong> Final quotes may increase or decrease based on the actual technical complexity, hours required, and specific integration needs.</li>
+            <li><strong>Payment Milestones:</strong> Projects are typically billed in stages (Discovery, Prototype, Final Delivery) as agreed upon in the project contract.</li>
+        </ul>
+
+        <h2>3. Delivery Timeline Guarantee</h2>
+        <p>I am committed to providing the fastest possible service in the independent market:</p>
+        <ul>
+            <li><strong>Rapid Tools:</strong> Delivered within 15 days.</li>
+            <li><strong>Large Systems:</strong> Delivered within a maximum of 30 days.</li>
+            <li>Timelines are finalized during the Blueprint stage and strictly adhered to unless the client requests scope changes mid-project.</li>
+        </ul>
+
+        <h2>4. Mission: Education Collaboration</h2>
+        <p>I offer special terms for educational institutes:</p>
+        <ul>
+            <li><strong>Affordability:</strong> Services are provided at the lowest possible cost to help modernize learning.</li>
+            <li><strong>Free Services:</strong> Select tools may be provided free of charge, subject to conditions such as app recommendations or collaborative favors.</li>
+        </ul>
+
+        <h2>5. Intellectual Property & Code Ownership</h2>
+        <p>Upon final payment, the client receives full ownership of the production-ready code and assets developed specifically for their project, unless otherwise specified in a retainer agreement.</p>
+
+        <div class="policy-box">
+            <h3>Start a Discussion</h3>
+            <p>Ready to build? Contact me to negotiate your project scope and pricing:</p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/917636014403">+91 7636014403</a></p>
+            <p><strong>Email:</strong> <a href="mailto:theuniquedawg29@gmail.com">theuniquedawg29@gmail.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        const saved = localStorage.getItem('santosh-theme') || 'light';
+        document.documentElement.dataset.theme = saved;
+    </script>
+</body>
+</html>
